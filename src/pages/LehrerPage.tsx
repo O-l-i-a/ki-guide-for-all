@@ -1,35 +1,12 @@
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import PageHeader from "@/components/shared/PageHeader";
-import ArticleCard, { Article } from "@/components/shared/ArticleCard";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { BookOpen, CheckCircle } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { BookOpen, CheckCircle, Clock } from "lucide-react";
+import { articles } from "@/data/articles";
 
-const articles: Article[] = [
-  {
-    id: 1,
-    title: "KI-gestützte Unterrichtsplanung: Praktische Tipps",
-    description: "Wie Sie KI nutzen können, um effektiver zu planen ohne die Qualität zu verlieren.",
-    category: "Lehrer",
-    readTime: "7 Min.",
-    date: "9. Jan 2026",
-  },
-  {
-    id: 2,
-    title: "KI-generierte Arbeiten erkennen: Methoden und Tools",
-    description: "Praktische Ansätze zur Erkennung von KI-unterstützten Schülerarbeiten.",
-    category: "Lehrer",
-    readTime: "10 Min.",
-    date: "7. Jan 2026",
-  },
-  {
-    id: 3,
-    title: "Faire Bewertung im KI-Zeitalter",
-    description: "Neue Bewertungsstrategien für eine Welt mit allgegenwärtiger KI.",
-    category: "Lehrer",
-    readTime: "6 Min.",
-    date: "3. Jan 2026",
-  },
-];
+const teacherArticles = articles.filter((a) => a.category === "Lehrer");
 
 const tips = [
   "Klare Regeln für KI-Nutzung im Unterricht etablieren",
@@ -56,8 +33,27 @@ const LehrerPage = () => {
                 Aktuelle Artikel für Lehrer
               </h2>
               <div className="grid gap-6">
-                {articles.map((article) => (
-                  <ArticleCard key={article.id} article={article} />
+                {teacherArticles.map((article) => (
+                  <Link key={article.id} to={`/article/${article.id}`}>
+                    <Card className="group cursor-pointer transition-all duration-300 hover:shadow-lg">
+                      <CardHeader>
+                        <div className="mb-2 flex items-center gap-3">
+                          <Badge variant="secondary">{article.category}</Badge>
+                          <span className="flex items-center gap-1 text-sm text-muted-foreground">
+                            <Clock className="h-3 w-3" />
+                            {article.readTime}
+                          </span>
+                        </div>
+                        <CardTitle className="font-serif transition-colors group-hover:text-primary">
+                          {article.title}
+                        </CardTitle>
+                        <CardDescription>{article.description}</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <span className="text-sm text-muted-foreground">{article.date}</span>
+                      </CardContent>
+                    </Card>
+                  </Link>
                 ))}
               </div>
             </div>
