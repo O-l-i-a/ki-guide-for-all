@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import PageHeader from "@/components/shared/PageHeader";
@@ -16,6 +17,11 @@ const ArticlePage = () => {
   const navigate = useNavigate();
   const articleId = parseInt(id || "0", 10);
   const article = getArticleById(articleId);
+
+  // Scroll to top when article changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [articleId]);
 
   if (!article) {
     return (
