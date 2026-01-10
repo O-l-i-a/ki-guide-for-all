@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { MessageCircle, Trash2 } from "lucide-react";
+import { MessageCircle, Trash2, Lock } from "lucide-react";
 
 export interface Comment {
   id: number;
@@ -14,23 +14,61 @@ export interface Comment {
   timestamp: Date;
 }
 
+// Admin password - change this to your desired password
+const ADMIN_PASSWORD = "admin123";
+
 const CommentsSection = ({ articleId }: { articleId: number }) => {
-  const [comments, setComments] = useState<Comment[]>([
-    {
-      id: 1,
-      author: "Anna Schmidt",
-      email: "anna@example.com",
-      content: "Sehr interessanter Artikel! Ich nutze ChatGPT bereits im Unterricht und kann den Vergleich zu Claude nur bestätigen.",
-      timestamp: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
-    },
-    {
-      id: 2,
-      author: "Marcus Weber",
-      email: "marcus@example.com",
-      content: "Die Tipps zur Unterrichtsplanung sind wirklich praktisch. Ich werde diese ausprobieren!",
-      timestamp: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
-    },
-  ]);
+  const [comments, setComments] = useState<Comment[]>([]);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [showAdminPrompt, setShowAdminPrompt] = useState(false);
+  const [adminPassword, setAdminPassword] = useState("");
+
+  const storageKey = `comments_article_${articleId}`;
+
+  // Load comments from localStorage on component mount
+  useEffect(() => {
+    const storedComments = localStorage.getItem(storageKey);
+    if (storedComments) {
+      try {
+        const parsed = JSON.parse(storedComments);
+        // Convert timestamp strings back to Date objects
+        setComments(
+          parsed.map((c: any) => ({
+            ...c,
+            timestamp: new Date(c.timestamp),
+          }))
+        );
+      } catch (error) {
+        console.error("Error loading comments:", error);
+        // If no comments exist for this article, add sample comments
+        addSampleComments();
+      }
+    } else {
+      // Add sample comments for new articles
+      addSampleComments();
+    }
+  }, [articleId]);
+
+  const addSampleComments = () => {
+    const sampleComments = [
+      {
+        id: 1,
+        author: "Anna Schmidt",
+        email: "anna@example.com",
+        content: "Sehr interessanter Artikel! Ich finde die Perspektive sehr wertvoll.",
+        timestamp: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+      },
+      {
+        id: 2,
+        author: "Marcus Weber",
+        email: "marcus@example.com",
+        content: "Danke für diese hilfreiche Information. Das werde ich definitiv umsetzen!",
+        timestamp: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
+      },
+    ];
+    setComments(sampleComments);
+    localStorage.setItem(storageKey, JSON.stringify(sampleComments));
+  };
 
   const [newComment, setNewComment] = useState({
     author: "",
@@ -54,12 +92,33 @@ const CommentsSection = ({ articleId }: { articleId: number }) => {
       timestamp: new Date(),
     };
 
-    setComments([comment, ...comments]);
+    const updatedComments = [comment, ...comments];
+    setComments(updatedComments);
+    localStorage.setItem(storageKey, JSON.stringify(updatedComments));
     setNewComment({ author: "", email: "", content: "" });
   };
 
   const handleDeleteComment = (id: number) => {
-    setComments(comments.filter((c) => c.id !== id));
+    if (!isAdmin) {
+      setShowAdminPrompt(true);
+      return;
+    }
+
+    const updatedComments = comments.filter((c) => c.id !== id);
+    setComments(updatedComments);
+    localStorage.setItem(storageKey, JSON.stringify(updatedComments));
+  };
+
+  const handleAdminLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (adminPassword === ADMIN_PASSWORD) {
+      setIsAdmin(true);
+      setShowAdminPrompt(false);
+      setAdminPassword("");
+    } else {
+      alert("Falsches Passwort");
+      setAdminPassword("");
+    }
   };
 
   const getInitials = (name: string) => {
@@ -98,7 +157,57 @@ const CommentsSection = ({ articleId }: { articleId: number }) => {
           <p className="text-muted-foreground">
             Teilen Sie Ihre Gedanken und erfahren Sie, was andere Leser denken.
           </p>
+          {isAdmin && (
+            <div className="mt-2 flex items-center gap-2 rounded-md bg-green-50 px-3 py-2 text-sm text-green-700 dark:bg-green-900/20 dark:text-green-400">
+              <Lock className="h-4 w-4" />
+              Admin-Modus aktiviert
+            </div>
+          )}
         </div>
+
+        {/* Admin Login Prompt */}
+        {showAdminPrompt && !isAdmin && (
+          <Card className="border-yellow-200 bg-yellow-50 dark:border-yellow-900/50 dark:bg-yellow-900/20">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-yellow-700 dark:text-yellow-400">
+                <Lock className="h-5 w-5" />
+                Admin-Zugriff erforderlich
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleAdminLogin} className="space-y-4">
+                <div>
+                  <label htmlFor="admin-password" className="mb-2 block text-sm font-medium">
+                    Admin-Passwort
+                  </label>
+                  <Input
+                    id="admin-password"
+                    type="password"
+                    placeholder="Passwort eingeben"
+                    value={adminPassword}
+                    onChange={(e) => setAdminPassword(e.target.value)}
+                  />
+                </div>
+                <div className="flex gap-2">
+                  <Button type="submit" size="sm">
+                    Anmelden
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      setShowAdminPrompt(false);
+                      setAdminPassword("");
+                    }}
+                  >
+                    Abbrechen
+                  </Button>
+                </div>
+              </form>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Add Comment Form */}
         <Card>
@@ -180,14 +289,17 @@ const CommentsSection = ({ articleId }: { articleId: number }) => {
                           <p className="font-semibold">{comment.author}</p>
                           <CardDescription>{formatDate(comment.timestamp)}</CardDescription>
                         </div>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleDeleteComment(comment.id)}
-                          className="text-destructive hover:text-destructive"
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
+                        {isAdmin && (
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleDeleteComment(comment.id)}
+                            className="text-destructive hover:text-destructive"
+                            title="Kommentar löschen (nur Admin)"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        )}
                       </div>
                       <p className="mt-2 text-sm">{comment.content}</p>
                     </div>
