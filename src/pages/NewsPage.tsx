@@ -1,63 +1,38 @@
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import PageHeader from "@/components/shared/PageHeader";
-import ArticleCard, { Article } from "@/components/shared/ArticleCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Newspaper } from "lucide-react";
-
-const allArticles: Article[] = [
-  {
-    id: 1,
-    title: "ChatGPT, Claude & Co: Ein Vergleich für den Bildungsbereich",
-    description: "Welche KI-Tools eignen sich am besten für Schule und Universität? Wir vergleichen Stärken und Schwächen.",
-    category: "Allgemein",
-    readTime: "8 Min.",
-    date: "10. Jan 2026",
-  },
-  {
-    id: 2,
-    title: "KI-gestützte Unterrichtsplanung: Praktische Tipps",
-    description: "Wie Sie KI nutzen können, um effektiver zu planen ohne die Qualität zu verlieren.",
-    category: "Lehrer",
-    readTime: "7 Min.",
-    date: "9. Jan 2026",
-  },
-  {
-    id: 3,
-    title: "Rechtliche Grundlagen: KI und Urheberrecht im Unterricht",
-    description: "Was dürfen Lehrer und Schüler? Ein Überblick über die aktuelle Rechtslage in Deutschland.",
-    category: "Richtlinien",
-    readTime: "6 Min.",
-    date: "8. Jan 2026",
-  },
-  {
-    id: 4,
-    title: "Hausarbeiten im KI-Zeitalter: Wissenschaftliches Arbeiten neu gedacht",
-    description: "Wie du KI ethisch korrekt für akademische Arbeiten einsetzen kannst.",
-    category: "Studenten",
-    readTime: "8 Min.",
-    date: "10. Jan 2026",
-  },
-  {
-    id: 5,
-    title: "KI als Lernhilfe richtig nutzen",
-    description: "So unterstützt KI beim Lernen, ohne dass du betrugst oder den Lerneffekt verlierst.",
-    category: "Schüler",
-    readTime: "5 Min.",
-    date: "10. Jan 2026",
-  },
-  {
-    id: 6,
-    title: "Prüfungsformate im Wandel: Alternativen zur klassischen Hausarbeit",
-    description: "Innovative Prüfungskonzepte für eine Welt mit allgegenwärtiger KI.",
-    category: "Professoren",
-    readTime: "12 Min.",
-    date: "7. Jan 2026",
-  },
-];
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Clock, Newspaper } from "lucide-react";
+import { articles, type ArticleData } from "@/data/articles";
 
 const categories = ["Alle", "Allgemein", "Lehrer", "Schüler", "Studenten", "Professoren", "Richtlinien"];
 
 const NewsPage = () => {
+  const renderArticleCard = (article: ArticleData) => (
+    <Link key={article.id} to={`/article/${article.id}`}>
+      <Card className="group h-full cursor-pointer transition-all duration-300 hover:shadow-lg">
+        <CardHeader>
+          <div className="mb-2 flex items-center gap-3">
+            <Badge variant="secondary">{article.category}</Badge>
+            <span className="flex items-center gap-1 text-sm text-muted-foreground">
+              <Clock className="h-3 w-3" />
+              {article.readTime}
+            </span>
+          </div>
+          <CardTitle className="font-serif transition-colors group-hover:text-primary">
+            {article.title}
+          </CardTitle>
+          <CardDescription>{article.description}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <span className="text-sm text-muted-foreground">{article.date}</span>
+        </CardContent>
+      </Card>
+    </Link>
+  );
+
   return (
     <Layout>
       <PageHeader
@@ -81,11 +56,9 @@ const NewsPage = () => {
               <TabsContent key={category} value={category}>
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                   {(category === "Alle"
-                    ? allArticles
-                    : allArticles.filter((a) => a.category === category)
-                  ).map((article) => (
-                    <ArticleCard key={article.id} article={article} />
-                  ))}
+                    ? articles
+                    : articles.filter((a) => a.category === category)
+                  ).map((article) => renderArticleCard(article))}
                 </div>
               </TabsContent>
             ))}
