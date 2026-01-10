@@ -1,35 +1,12 @@
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import PageHeader from "@/components/shared/PageHeader";
-import ArticleCard, { Article } from "@/components/shared/ArticleCard";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Award, Lightbulb } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Award, Lightbulb, Clock } from "lucide-react";
+import { articles } from "@/data/articles";
 
-const articles: Article[] = [
-  {
-    id: 1,
-    title: "KI in der Hochschullehre: Didaktische Perspektiven",
-    description: "Wie Sie KI sinnvoll in Vorlesungen und Seminare integrieren können.",
-    category: "Professoren",
-    readTime: "10 Min.",
-    date: "9. Jan 2026",
-  },
-  {
-    id: 2,
-    title: "Prüfungsformate im Wandel: Alternativen zur klassischen Hausarbeit",
-    description: "Innovative Prüfungskonzepte für eine Welt mit allgegenwärtiger KI.",
-    category: "Professoren",
-    readTime: "12 Min.",
-    date: "7. Jan 2026",
-  },
-  {
-    id: 3,
-    title: "KI in der Forschung: Ethische Leitlinien und Best Practices",
-    description: "Empfehlungen für den verantwortungsvollen Einsatz von KI in wissenschaftlicher Arbeit.",
-    category: "Professoren",
-    readTime: "9 Min.",
-    date: "3. Jan 2026",
-  },
-];
+const professorArticles = articles.filter((a) => a.category === "Professoren");
 
 const considerations = [
   {
@@ -67,8 +44,27 @@ const ProfessorenPage = () => {
                 Artikel für Lehrende an Hochschulen
               </h2>
               <div className="grid gap-6">
-                {articles.map((article) => (
-                  <ArticleCard key={article.id} article={article} />
+                {professorArticles.map((article) => (
+                  <Link key={article.id} to={`/article/${article.id}`}>
+                    <Card className="group cursor-pointer transition-all duration-300 hover:shadow-lg">
+                      <CardHeader>
+                        <div className="mb-2 flex items-center gap-3">
+                          <Badge variant="secondary">{article.category}</Badge>
+                          <span className="flex items-center gap-1 text-sm text-muted-foreground">
+                            <Clock className="h-3 w-3" />
+                            {article.readTime}
+                          </span>
+                        </div>
+                        <CardTitle className="font-serif transition-colors group-hover:text-primary">
+                          {article.title}
+                        </CardTitle>
+                        <CardDescription>{article.description}</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <span className="text-sm text-muted-foreground">{article.date}</span>
+                      </CardContent>
+                    </Card>
+                  </Link>
                 ))}
               </div>
             </div>
