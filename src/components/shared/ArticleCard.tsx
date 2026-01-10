@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Clock } from "lucide-react";
@@ -16,8 +17,17 @@ interface ArticleCardProps {
 }
 
 const ArticleCard = ({ article }: ArticleCardProps) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/article/${article.id}`);
+  };
+
   return (
-    <Card className="group cursor-pointer transition-all duration-300 hover:shadow-lg">
+    <Card
+      className="group cursor-pointer transition-all duration-300 hover:shadow-lg"
+      onClick={handleClick}
+    >
       <CardHeader>
         <div className="mb-2 flex items-center gap-3">
           <Badge variant="secondary">{article.category}</Badge>

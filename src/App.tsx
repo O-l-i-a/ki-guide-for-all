@@ -10,6 +10,7 @@ import StudentenPage from "./pages/StudentenPage";
 import ProfessorenPage from "./pages/ProfessorenPage";
 import NewsPage from "./pages/NewsPage";
 import RichtlinienPage from "./pages/RichtlinienPage";
+import ArticlePage from "./pages/ArticlePage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/studenten" element={<StudentenPage />} />
           <Route path="/professoren" element={<ProfessorenPage />} />
           <Route path="/news" element={<NewsPage />} />
+          <Route path="/article/:id" element={<ArticlePage />} />
           <Route path="/richtlinien" element={<RichtlinienPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
