@@ -7,13 +7,33 @@ import { Scale, Shield, Eye, FileText, AlertTriangle, CheckCircle } from "lucide
 const guidelines = [
   {
     icon: Shield,
-    title: "Datenschutz & Privatsphäre",
+    title: "Privatsphäre und Daten schützen",
     description: "Grundsätze zum Schutz personenbezogener Daten",
-    rules: [
-      "Keine personenbezogenen Daten von Schülern oder Studierenden in KI-Tools eingeben",
-      "Anonymisierung von Beispielen und Fallstudien vor der KI-Nutzung",
-      "Verwendung von DSGVO-konformen KI-Diensten bevorzugen",
-      "Regelmäßige Überprüfung der Datenschutzrichtlinien genutzter Tools",
+    sections: [
+      {
+        subtitle: "Privatsphäre schützen",
+        rules: [
+          "Gib keine personenbezogenen Daten in KI-Tools ein (z. B. Namen, Adressen, Matrikelnummern, Fotos).",
+          {
+            text: "Keine sensiblen Daten eingeben – dazu zählen insbesondere:",
+            subrules: [
+              "Gesundheitsdaten",
+              "Religiöse oder politische Überzeugungen",
+              "Leistungsbewertungen, Gutachten oder Zeugnisse",
+            ],
+          },
+          "Auch Daten von anderen Personen (Mitschüler:innen, Lehrende, Kolleg:innen) dürfen nicht eingegeben werden.",
+        ],
+      },
+      {
+        subtitle: "Eingaben in KI-Systeme sind nicht vollständig kontrollierbar",
+        rules: [
+          "Inhalte, die in KI-Tools eingegeben werden, verlassen den eigenen geschützten Bereich.",
+          "Sie können gespeichert, analysiert oder weiterverarbeitet werden.",
+          "Eine vollständige Kontrolle darüber, wie und wofür diese Daten langfristig genutzt werden, besteht nicht.",
+        ],
+        conclusion: "Alles, was vertraulich, persönlich oder schützenswert ist, gehört nicht in eine KI.",
+      },
     ],
   },
   {
@@ -108,14 +128,67 @@ const RichtlinienPage = () => {
                   <CardDescription>{guideline.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-2">
-                    {guideline.rules.map((rule, index) => (
-                      <li key={index} className="flex gap-2 text-sm">
-                        <CheckCircle className="h-4 w-4 shrink-0 text-primary" />
-                        <span className="text-muted-foreground">{rule}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  {guideline.sections ? (
+                    <div className="space-y-6">
+                      {guideline.sections.map((section, sectionIndex) => (
+                        <div key={sectionIndex}>
+                          {section.subtitle && (
+                            <h4 className="mb-3 font-semibold text-foreground">{section.subtitle}</h4>
+                          )}
+                          <ul className="space-y-2">
+                            {section.rules.map((rule, index) => (
+                              <li key={index}>
+                                <div className="flex gap-2 text-sm">
+                                  <CheckCircle className="h-4 w-4 shrink-0 text-primary" />
+                                  <span className="text-muted-foreground">
+                                    {typeof rule === "string" ? rule : rule.text}
+                                  </span>
+                                </div>
+                                {typeof rule !== "string" && rule.subrules && (
+                                  <ul className="ml-6 mt-2 space-y-1 border-l border-primary/30 pl-4">
+                                    {rule.subrules.map((subrule, subindex) => (
+                                      <li key={subindex} className="flex gap-2 text-sm">
+                                        <span className="text-primary">•</span>
+                                        <span className="text-muted-foreground">{subrule}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                )}
+                              </li>
+                            ))}
+                          </ul>
+                          {section.conclusion && (
+                            <p className="mt-3 rounded-lg bg-primary/5 p-3 text-sm font-medium text-foreground italic">
+                              → {section.conclusion}
+                            </p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <ul className="space-y-2">
+                      {guideline.rules && guideline.rules.map((rule, index) => (
+                        <li key={index}>
+                          <div className="flex gap-2 text-sm">
+                            <CheckCircle className="h-4 w-4 shrink-0 text-primary" />
+                            <span className="text-muted-foreground">
+                              {typeof rule === "string" ? rule : rule.text}
+                            </span>
+                          </div>
+                          {typeof rule !== "string" && rule.subrules && (
+                            <ul className="ml-6 mt-2 space-y-1 border-l border-primary/30 pl-4">
+                              {rule.subrules.map((subrule, subindex) => (
+                                <li key={subindex} className="flex gap-2 text-sm">
+                                  <span className="text-primary">•</span>
+                                  <span className="text-muted-foreground">{subrule}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </CardContent>
               </Card>
             ))}
