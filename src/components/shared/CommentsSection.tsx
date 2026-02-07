@@ -25,29 +25,7 @@ const CommentsSection = ({ articleId }: { articleId: number }) => {
 
   const storageKey = `comments_article_${articleId}`;
 
-  // Load comments from localStorage on component mount
-  useEffect(() => {
-    const storedComments = localStorage.getItem(storageKey);
-    if (storedComments) {
-      try {
-        const parsed = JSON.parse(storedComments);
-        // Convert timestamp strings back to Date objects
-        setComments(
-          parsed.map((c: any) => ({
-            ...c,
-            timestamp: new Date(c.timestamp),
-          }))
-        );
-      } catch (error) {
-        console.error("Error loading comments:", error);
-        // If no comments exist for this article, add sample comments
-        addSampleComments();
-      }
-    } else {
-      // Add sample comments for new articles
-      addSampleComments();
-    }
-  }, [articleId]);
+  
 
   const addSampleComments = () => {
     const sampleComments = [
@@ -145,7 +123,29 @@ const CommentsSection = ({ articleId }: { articleId: number }) => {
       return date.toLocaleDateString("de-DE");
     }
   };
-
+  // Load comments from localStorage on component mount
+  useEffect(() => {
+    const storedComments = localStorage.getItem(storageKey);
+    if (storedComments) {
+      try {
+        const parsed = JSON.parse(storedComments);
+        // Convert timestamp strings back to Date objects
+        setComments(
+          parsed.map((c: { timestamp: string | number | Date }) => ({
+            ...c,
+            timestamp: new Date(c.timestamp),
+          }))
+        );
+      } catch (error) {
+        console.error("Error loading comments:", error);
+        // If no comments exist for this article, add sample comments
+        addSampleComments();
+      }
+    } else {
+      // Add sample comments for new articles
+      addSampleComments();
+    }
+  }, [articleId, addSampleComments]);
   return (
     <section className="py-12">
       <div className="space-y-8">

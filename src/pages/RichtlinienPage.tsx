@@ -2,13 +2,38 @@ import Layout from "@/components/layout/Layout";
 import PageHeader from "@/components/shared/PageHeader";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Scale, Shield, Eye, FileText, AlertTriangle, CheckCircle } from "lucide-react";
+import { Scale, Shield, Eye, FileText, AlertTriangle, CheckCircle, Brain, Lightbulb, Gavel, Lock, Zap } from "lucide-react";
+interface NestedRule {
+  text: string;
+  subrules: string[];
+}
 
-const guidelines = [
+type Rule = string | NestedRule;
+
+interface Section {
+  subtitle: string;
+  rules: Rule[];
+  conclusion?: string;
+}
+
+interface Guideline {
+  icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  description: string;
+  sections?: Section[];
+  rules?: Rule[];
+}
+
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+const guidelines: Guideline[] = [
   {
     icon: Shield,
     title: "Privatsphäre und Daten schützen",
-    description: "Grundsätze zum Schutz personenbezogener Daten",
+    description: "Verantwortungsvoller Umgang mit persönlichen und sensiblen Informationen",
     sections: [
       {
         subtitle: "Privatsphäre schützen",
@@ -37,41 +62,226 @@ const guidelines = [
     ],
   },
   {
-    icon: FileText,
-    title: "Transparenz & Kennzeichnung",
-    description: "Offenlegung von KI-Unterstützung",
-    rules: [
-      "KI-generierte oder KI-unterstützte Inhalte müssen entsprechend gekennzeichnet werden",
-      "Art und Umfang der KI-Nutzung sollte dokumentiert werden",
-      "Bei akademischen Arbeiten: genaue Angabe des verwendeten Tools und Prompts",
-      "Institutionelle Vorgaben zur Kennzeichnung beachten",
+    icon: Brain,
+    title: "KI verstehen – was sie kann und was nicht",
+    description: "Grundlagen und Grenzen von Künstlicher Intelligenz",
+    sections: [
+      {
+        subtitle: "KI ist nicht fehlerfrei",
+        rules: [
+          "KI erzeugt Antworten auf Basis von Wahrscheinlichkeiten, nicht von echtem Wissen.",
+          "Inhalte können falsch (halluziniert), unvollständig, veraltet oder erfunden sein.",
+          "Besonders kritisch sind überzeugend klingende Aussagen und scheinbar korrekte Quellen.",
+        ],
+      },
+      {
+        subtitle: "Fakten und Quellen überprüfen",
+        rules: [
+          "Alle von KI generierten Fakten müssen verifiziert werden.",
+          {
+            text: "Quellen können:",
+            subrules: [
+              "falsch zugeordnet,",
+              "unvollständig",
+              "oder nicht existent sein.",
+            ],
+          },
+          "Die Überprüfung sollte über Fachliteratur, Lehrmaterialien, wissenschaftliche Datenbanken oder Rücksprache mit Lehrenden erfolgen.",
+        ],
+      },
+      {
+        subtitle: "Fachliche Verantwortung bleibt beim Menschen",
+        rules: [
+          "Die inhaltliche und fachliche Korrektheit muss durch eigenes Wissen oder Expertise sichergestellt werden.",
+          "KI kann unterstützen, ersetzt aber kein kritisches Denken.",
+        ],
+      },
+      {
+        subtitle: "Das richtige KI-Tool für den richtigen Zweck",
+        rules: [
+          "Nicht jedes KI-Tool ist für jede Anwendung geeignet.",
+          {
+            text: "Beispiele:",
+            subrules: [
+              "Text-KI: Ideensammlung, Strukturierung, sprachliche Unterstützung",
+              "Bild-KI: Visualisierung, Illustrationen",
+              "Lern-KI: Erklärungen auf unterschiedlichen Niveaus",
+            ],
+          },
+          "Der Einsatz sollte immer zweckgebunden, reflektiert und angemessen erfolgen.",
+        ],
+        conclusion: "Je sensibler der Anwendungsbereich, desto vorsichtiger sollte KI eingesetzt werden.",
+      },
     ],
   },
   {
-    icon: Eye,
-    title: "Kritische Überprüfung",
-    description: "Qualitätssicherung von KI-Ausgaben",
-    rules: [
-      "Alle KI-generierten Fakten und Quellen müssen verifiziert werden",
-      "KI-Halluzinationen (erfundene Informationen) sind häufig – immer prüfen",
-      "Literaturangaben der KI sind oft fehlerhaft oder erfunden",
-      "Fachliche Korrektheit durch eigene Expertise sicherstellen",
+    icon: Lightbulb,
+    title: "KI fair, transparent und verantwortungsvoll einsetzen",
+    description: "Ethische Nutzung und klare Kommunikation",
+    sections: [
+      {
+        subtitle: "KI-Nutzung offenlegen und dokumentieren",
+        rules: [
+          "Der Einsatz von KI sollte klar und nachvollziehbar gekennzeichnet werden.",
+          {
+            text: "Dazu gehört:",
+            subrules: [
+              "welches KI-Tool genutzt wurde,",
+              "zu welchem Zweck,",
+              "in welchem Umfang der Einsatz erfolgte.",
+            ],
+          },
+          "Bei schulischen und akademischen Arbeiten ist die Dokumentation der KI-Nutzung besonders wichtig.",
+          "Es gelten immer die Vorgaben der jeweiligen Schule, Hochschule oder des Instituts.",
+        ],
+      },
+      {
+        subtitle: "Keine Täuschung über Eigenleistung",
+        rules: [
+          "KI darf nicht genutzt werden, um eine eigene Leistung vorzutäuschen.",
+          "Nicht offengelegter oder unzulässiger KI-Einsatz kann als Täuschungsversuch gelten.",
+          "Plagiats- und Prüfsoftware erkennt KI-generierte Inhalte zunehmend zuverlässig.",
+        ],
+        conclusion: "Täuschungsversuche können zu schweren Konsequenzen führen, bis hin zum Ausschluss von Prüfungen.",
+      },
+      {
+        subtitle: "Im Zweifel nachfragen",
+        rules: [
+          "Regelungen zur KI-Nutzung unterscheiden sich je nach Einrichtung und Fach.",
+          {
+            text: "Bei Unsicherheiten gilt:",
+            subrules: [
+              "lieber vorab die zuständige Lehrkraft ansprechen",
+              "oder die Vorgaben des Instituts bzw. der Prüfungsordnung prüfen.",
+            ],
+          },
+        ],
+        conclusion: "Transparenz schützt vor Missverständnissen und Regelverstößen.",
+      },
     ],
   },
   {
-    icon: Scale,
-    title: "Rechtliche Aspekte",
-    description: "Urheberrecht und akademische Integrität",
-    rules: [
-      "KI-generierte Texte können urheberrechtlich geschütztes Material enthalten",
-      "Plagiatsprüfungen erkennen zunehmend KI-generierte Inhalte",
-      "Täuschungsversuche können zu Prüfungsausschluss führen",
-      "Im Zweifel immer die zuständige Lehrkraft oder Institution befragen",
+    icon: Gavel,
+    title: "Rechtliche Grundlagen – EU-Recht, kurz und knapp",
+    description: "Regulierung von Künstlicher Intelligenz in Europa",
+    sections: [
+      {
+        subtitle: "Der EU AI Act – was ist das?",
+        rules: [
+          "Die EU hat Regeln für KI eingeführt, um Menschen zu schützen.",
+          "KI wird je nach Risiko unterschiedlich streng geregelt.",
+        ],
+      },
+      {
+        subtitle: "Verbotene KI",
+        rules: [
+          {
+            text: "KI, die Menschen manipuliert oder überwacht",
+            subrules: [
+              "Soziales Scoring oder emotionale Bewertung in Schule & Bildung",
+            ],
+          },
+        ],
+        conclusion: "Solche Systeme dürfen nicht eingesetzt werden.",
+      },
+      {
+        subtitle: "Hochrisiko-KI",
+        rules: [
+          {
+            text: "KI in sensiblen Bereichen wie:",
+            subrules: [
+              "Bildung (z. B. automatische Leistungsbewertung)",
+              "Gesundheit",
+            ],
+          },
+          {
+            text: "Darf nur eingesetzt werden mit:",
+            subrules: [
+              "menschlicher Kontrolle",
+              "Transparenz",
+              "klaren Schutzmaßnahmen",
+            ],
+          },
+        ],
+        conclusion: "Für Unterricht heißt das: keine automatisierten Entscheidungen über Lernende.",
+      },
+      {
+        subtitle: "Transparenzpflichtige KI",
+        rules: [
+          "Chatbots & generative KI (Texte, Bilder)",
+          {
+            text: "Nutzer:innen müssen erkennen können:",
+            subrules: [
+              "dass es KI ist und wie sie eingesetzt wird",
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    icon: Lock,
+    title: "Datenschutz gilt immer (DSGVO verständlich gemacht)",
+    description: "Datenminimierung und Datensicherheit",
+    sections: [
+      {
+        subtitle: "KI & Datenschutz",
+        rules: [
+          {
+            text: "Auch beim Lernen gilt:",
+            subrules: [
+              "so wenig Daten wie möglich",
+              "nur für einen klaren Zweck",
+            ],
+          },
+          {
+            text: "Besonders geschützt sind:",
+            subrules: [
+              "Gesundheitsdaten",
+              "Leistungsbewertungen",
+              "persönliche Meinungen",
+            ],
+          },
+        ],
+        conclusion: "Deshalb: Lieber anonym formulieren oder Beispiele nutzen.",
+      },
+    ],
+  },
+  {
+    icon: Zap,
+    title: "Gute Praxis für Schule & Studium (konkrete Handlungsanleitung)",
+    description: "Praktischer Leitfaden für sinnvolle KI-Nutzung",
+    sections: [
+      {
+        subtitle: "✅ KI sinnvoll nutzen für:",
+        rules: [
+          "Ideensammlungen",
+          "Gliederungen",
+          "Erklärungen auf unterschiedlichem Niveau",
+          "Sprachliche Unterstützung",
+          "Übungsfragen",
+        ],
+      },
+      {
+        subtitle: "❌ KI nicht nutzen für:",
+        rules: [
+          "automatische Leistungsbewertungen",
+          "Prüfungsentscheidungen",
+          "sensible Fallanalysen mit echten Daten",
+          "ungekennzeichnete Abgaben",
+        ],
+      },
+      {
+        subtitle: "Merksatz für Lernende & Lehrende",
+        rules: [
+          "Keine sensiblen Daten. KI kritisch prüfen. Verantwortung behalten. Transparent bleiben.",
+        ],
+      },
     ],
   },
 ];
 
-const faqs = [
+const faqs: FAQ[] = [
   {
     question: "Darf ich KI für Hausaufgaben verwenden?",
     answer: "Das hängt von den Regeln Ihrer Schule oder Universität ab. Grundsätzlich gilt: KI als Lernhilfe (z.B. zum Verstehen von Konzepten) ist meist erlaubt, das Einreichen von KI-generierten Texten als eigene Arbeit jedoch nicht. Fragen Sie im Zweifel Ihre Lehrkraft.",
@@ -121,10 +331,12 @@ const RichtlinienPage = () => {
             {guidelines.map((guideline) => (
               <Card key={guideline.title}>
                 <CardHeader>
-                  <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                    <guideline.icon className="h-5 w-5" />
+                  <div className="mb-3 flex items-center gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                      <guideline.icon className="h-5 w-5" />
+                    </div>
+                    <CardTitle className="font-serif">{guideline.title}</CardTitle>
                   </div>
-                  <CardTitle className="font-serif">{guideline.title}</CardTitle>
                   <CardDescription>{guideline.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -194,24 +406,21 @@ const RichtlinienPage = () => {
             ))}
           </div>
 
-          {/* FAQ Section */}
-          <div className="mx-auto max-w-3xl">
-            <h2 className="mb-8 text-center font-serif text-3xl font-bold text-foreground">
-              Häufig gestellte Fragen
-            </h2>
-            <Accordion type="single" collapsible className="w-full">
-              {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left font-medium">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
+          {/* Author & Disclosure Section */}
+          <div className="mt-16 border-t pt-8">
+            <div className="mx-auto max-w-3xl rounded-lg bg-muted/30 p-6">
+              <p className="mb-3 text-sm text-muted-foreground">
+                <span className="font-semibold text-foreground">Erstellt von Melissa Mewes, am 06.02.2026</span>
+              </p>
+              <p className="mb-2 text-sm text-muted-foreground">
+                Bei der Erstellung dieser Arbeit wurde KI unterstützend genutzt (zur Ideensammlung und sprachlichen Überarbeitung).
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Die inhaltliche Verantwortung liegt vollständig bei mir.
+              </p>
+            </div>
           </div>
+
         </div>
       </section>
     </Layout>
