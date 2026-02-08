@@ -94,9 +94,9 @@ const ArticlePage = () => {
       <section className="py-16">
         <div className="container mx-auto max-w-3xl px-4">
           {/* Main Content */}
-          <div className="prose prose-slate max-w-none dark:prose-invert">
+          <div className="prose prose-lg max-w-none prose-headings:font-serif prose-headings:text-foreground prose-p:text-foreground/90 prose-strong:text-foreground prose-a:text-primary prose-blockquote:border-primary prose-blockquote:bg-primary/5 prose-blockquote:py-1 prose-blockquote:px-2 prose-blockquote:rounded-r-lg prose-table:text-sm prose-th:bg-secondary prose-th:text-secondary-foreground prose-th:px-4 prose-th:py-3 prose-td:px-4 prose-td:py-2.5 prose-td:border-border prose-th:border-border prose-li:text-foreground/90 prose-hr:border-border dark:prose-invert">
             <div
-              className="mb-12 space-y-6 leading-relaxed"
+              className="mb-12 space-y-2 leading-relaxed"
               dangerouslySetInnerHTML={{ __html: article.content }}
             />
           </div>
