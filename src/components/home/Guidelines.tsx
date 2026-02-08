@@ -10,7 +10,7 @@ const guidelines = [
   },
   {
     icon: AlertTriangle,
-    title: "Quellen prüfen",
+    title: "Quellen prüfen ",
     description: "KI kann falsche Informationen generieren. Überprüfen Sie alle Fakten sorgfältig.",
   },
   {
