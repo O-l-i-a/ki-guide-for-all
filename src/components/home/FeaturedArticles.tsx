@@ -31,11 +31,22 @@ const FeaturedArticles = () => {
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {featuredArticles.map((article) => (
-            <Link key={article.id} to={`/article/${article.id}`}>
+            <a
+              key={article.id}
+              href={article.externalUrl ?? `/article/${article.id}`}
+              target={article.externalUrl ? "_blank" : undefined}
+              rel={article.externalUrl ? "noopener noreferrer" : undefined}
+            >
               <Card className="group h-full cursor-pointer transition-all duration-300 hover:shadow-lg">
                 <CardHeader>
                   <div className="mb-2 flex items-center gap-3">
-                    <Badge variant="secondary">{article.category}</Badge>
+                    <div className="flex flex-wrap gap-2">
+                      {article.audiences.map((audience) => (
+                        <Badge key={audience} variant="secondary">
+                          {audience}
+                        </Badge>
+                      ))}
+                    </div>
                     <span className="flex items-center gap-1 text-sm text-muted-foreground">
                       <Clock className="h-3 w-3" />
                       {article.readTime}
@@ -50,7 +61,7 @@ const FeaturedArticles = () => {
                   <span className="text-sm text-muted-foreground">{article.date}</span>
                 </CardContent>
               </Card>
-            </Link>
+            </a>
           ))}
         </div>
 

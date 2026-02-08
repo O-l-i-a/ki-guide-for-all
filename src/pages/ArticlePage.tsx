@@ -65,7 +65,9 @@ const ArticlePage = () => {
       <section className="bg-gradient-to-r from-primary/5 to-primary/10 py-12">
         <div className="container mx-auto px-4">
           <div className="mb-4 flex gap-2">
-            <Badge>{article.category}</Badge>
+            {article.audiences.map((audience) => (
+              <Badge key={audience}>{audience}</Badge>
+            ))}
           </div>
           <h1 className="mb-4 font-serif text-4xl font-bold text-foreground md:text-5xl">
             {article.title}

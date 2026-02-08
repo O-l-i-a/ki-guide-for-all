@@ -7,7 +7,7 @@ export interface Article {
   id: number;
   title: string;
   description: string;
-  category: string;
+  audiences: string[];
   readTime: string;
   date: string;
 }
@@ -30,7 +30,13 @@ const ArticleCard = ({ article }: ArticleCardProps) => {
     >
       <CardHeader>
         <div className="mb-2 flex items-center gap-3">
-          <Badge variant="secondary">{article.category}</Badge>
+          <div className="flex flex-wrap gap-2">
+            {article.audiences.map((audience) => (
+              <Badge key={audience} variant="secondary">
+                {audience}
+              </Badge>
+            ))}
+          </div>
           <span className="flex items-center gap-1 text-sm text-muted-foreground">
             <Clock className="h-3 w-3" />
             {article.readTime}

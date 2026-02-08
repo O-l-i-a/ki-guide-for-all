@@ -2,10 +2,11 @@ export interface ArticleData {
   id: number;
   title: string;
   description: string;
-  category: string;
+  audiences: string[];
   readTime: string;
   date: string;
   author: string;
+  externalUrl?: string;
   content: string;
   sources: string[];
   relatedArticleIds: number[];
@@ -14,318 +15,568 @@ export interface ArticleData {
 export const articles: ArticleData[] = [
   {
     id: 1,
-    title: "ChatGPT, Claude & Co: Ein Vergleich für den Bildungsbereich",
-    description: "Übersicht der wichtigsten KI-Tools für Lehre und Lernen - ihre Vorteile, Nachteile und praktischen Einsatzszenarien.",
-    category: "Allgemein",
-    readTime: "10 Min.",
-    date: "8. Feb 2026",
-    author: "Melissa",
-    content: `
-      <h2>KI-Tools für Lehre & Lernen - Überblick</h2>
-      <p>Die Landschaft der KI-Tools für Bildung wächst ständig. Verschiedene Plattformen bieten unterschiedliche Stärken und eignen sich für verschiedene Aufgaben. Dieser Überblick hilft Ihnen, das richtige Tool für Ihre Anforderungen zu finden.</p>
-      
-      <h2>Vergleich der wichtigsten KI-Tools</h2>
-      
-      <table style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px;">
-        <thead>
-          <tr style="background-color: #f0f0f0; border-bottom: 2px solid #333;">
-            <th style="padding: 12px; text-align: left; font-weight: bold;">Tool / Kategorie</th>
-            <th style="padding: 12px; text-align: left; font-weight: bold;">Geeignet für</th>
-            <th style="padding: 12px; text-align: left; font-weight: bold;">Vorteile</th>
-            <th style="padding: 12px; text-align: left; font-weight: bold;">Nachteile / Hinweise</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="border-bottom: 1px solid #ddd;">
-            <td style="padding: 12px; font-weight: bold;">ChatGPT</td>
-            <td style="padding: 12px;">Lernzusammenfassungen, Erklärungen, Textentwürfe, Strukturierung</td>
-            <td style="padding: 12px;">Sehr vielseitig, gute Erklärungen auf verschiedenen Niveaus</td>
-            <td style="padding: 12px;">Kann fehlerhafte Inhalte liefern - Fakten überprüfen, keine sensiblen Daten</td>
-          </tr>
-          <tr style="border-bottom: 1px solid #ddd;">
-            <td style="padding: 12px; font-weight: bold;">Gemini (Google)</td>
-            <td style="padding: 12px;">Recherche, Überblick, Zusammenfassungen, Präsentationen</td>
-            <td style="padding: 12px;">Starker Web-Bezug, Integration in Google-Dienste</td>
-            <td style="padding: 12px;">Quellen nicht immer verlässlich, Google-Konto notwendig</td>
-          </tr>
-          <tr style="border-bottom: 1px solid #ddd;">
-            <td style="padding: 12px; font-weight: bold;">Microsoft Copilot</td>
-            <td style="padding: 12px;">Recherche, Textarbeit, Office-Aufgaben</td>
-            <td style="padding: 12px;">Integration in Word, PowerPoint, Websuche</td>
-            <td style="padding: 12px;">Teilweise oberflächliche Antworten</td>
-          </tr>
-          <tr style="border-bottom: 1px solid #ddd;">
-            <td style="padding: 12px; font-weight: bold;">Claude</td>
-            <td style="padding: 12px;">Längere Texte, strukturierte Argumentation</td>
-            <td style="padding: 12px;">Sehr gut bei umfangreichen Texten, ethischer Fokus</td>
-            <td style="padding: 12px;">Weniger Tool-Integration</td>
-          </tr>
-          <tr style="border-bottom: 1px solid #ddd;">
-            <td style="padding: 12px; font-weight: bold;">DeepL / DeepL Write</td>
-            <td style="padding: 12px;">Übersetzen, sprachliche Überarbeitung</td>
-            <td style="padding: 12px;">Sehr hohe Sprachqualität, präzise Übersetzungen</td>
-            <td style="padding: 12px;">Keine Wissens- oder Recherche-KI</td>
-          </tr>
-          <tr>
-            <td style="padding: 12px; font-weight: bold;">Bild-KI (z.B. Canva)</td>
-            <td style="padding: 12px;">Visualisierung, Präsentationen, Grafiken</td>
-            <td style="padding: 12px;">Anschauliches Lernen, schnelle professionelle Grafiken</td>
-            <td style="padding: 12px;">Urheberrecht beachten, Quellenangaben machen</td>
-          </tr>
-        </tbody>
-      </table>
-      
-      <h2>Einsatzszenarien</h2>
-      
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin: 20px 0;">
-        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px;">
-          <h3 style="margin-top: 0; font-size: 16px;">📚 Lernzusammenfassungen</h3>
-          <p style="margin: 0; font-size: 14px;">Komplexe Inhalte zusammenfassen und Prüfungen vorbereiten</p>
-        </div>
-        <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 20px; border-radius: 8px;">
-          <h3 style="margin-top: 0; font-size: 16px;">🔍 Recherche</h3>
-          <p style="margin: 0; font-size: 14px;">Überblick zu Themen gewinnen und aktuelle Informationen finden</p>
-        </div>
-        <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 20px; border-radius: 8px;">
-          <h3 style="margin-top: 0; font-size: 16px;">✍️ Schreiben</h3>
-          <p style="margin: 0; font-size: 14px;">Texte verfassen und sprachlich verbessern</p>
-        </div>
-        <div style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white; padding: 20px; border-radius: 8px;">
-          <h3 style="margin-top: 0; font-size: 16px;">🎨 Präsentationen</h3>
-          <p style="margin: 0; font-size: 14px;">Visualisierungen und ansprechende Grafiken erstellen</p>
-        </div>
-        <div style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); color: white; padding: 20px; border-radius: 8px;">
-          <h3 style="margin-top: 0; font-size: 16px;">📋 Unterrichtsvorbereitung</h3>
-          <p style="margin: 0; font-size: 14px;">Lektionspläne und Materialien schnell erstellen</p>
-        </div>
-        <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; padding: 20px; border-radius: 8px;">
-          <h3 style="margin-top: 0; font-size: 16px;">🎯 Unterschiedliche Lernniveaus</h3>
-          <p style="margin: 0; font-size: 14px;">Inhalte auf verschiedene Schüler anpassen</p>
-        </div>
-      </div>
-      
-      <h2>Welches Tool wofür?</h2>
-      
-      <div style="background: #f9f9f9; border-left: 4px solid #667eea; padding: 16px; margin: 16px 0; border-radius: 4px;">
-        <h4 style="margin-top: 0; color: #667eea;">💡 ChatGPT</h4>
-        <p style="margin: 0;">Beste Wahl für Erklärungen, Strukturierung von Inhalten und flexibles Lernen</p>
-      </div>
-      
-      <div style="background: #f9f9f9; border-left: 4px solid #f5576c; padding: 16px; margin: 16px 0; border-radius: 4px;">
-        <h4 style="margin-top: 0; color: #f5576c;">🔍 Gemini</h4>
-        <p style="margin: 0;">Ideal für Recherche und aktuelle Informationen mit Google-Integration</p>
-      </div>
-      
-      <div style="background: #f9f9f9; border-left: 4px solid #00f2fe; padding: 16px; margin: 16px 0; border-radius: 4px;">
-        <h4 style="margin-top: 0; color: #00f2fe;">📊 Copilot</h4>
-        <p style="margin: 0;">Perfekt für Microsoft Office Benutzer und integrierte Arbeitsabläufe</p>
-      </div>
-      
-      <div style="background: #f9f9f9; border-left: 4px solid #764ba2; padding: 16px; margin: 16px 0; border-radius: 4px;">
-        <h4 style="margin-top: 0; color: #764ba2;">📖 Claude</h4>
-        <p style="margin: 0;">Spezialist für längere, strukturierte Texte und komplexe Argumentation</p>
-      </div>
-      
-      <div style="background: #f9f9f9; border-left: 4px solid #fee140; padding: 16px; margin: 16px 0; border-radius: 4px;">
-        <h4 style="margin-top: 0; color: #fee140;">🌐 DeepL</h4>
-        <p style="margin: 0;">Die beste Lösung für präzise Übersetzungen und sprachliche Korrektionen</p>
-      </div>
-      
-      <h2>Vorteile im Bildungsalltag</h2>
-      
-      <div style="background: #e8f4f8; padding: 20px; border-radius: 8px; margin: 20px 0;">
-        <ul style="margin: 0; padding-left: 20px;">
-          <li style="margin-bottom: 12px;"><strong>Unterstützung beim Lernen:</strong> KI hilft, komplexe Inhalte zu verstehen und Konzepte in verschiedenen Formen zu erklären</li>
-          <li style="margin-bottom: 12px;"><strong>Zeitersparnis:</strong> Automatisierung von Routine-Aufgaben bei der Vorbereitung und Strukturierung</li>
-          <li style="margin-bottom: 12px;"><strong>Selbstständiges Lernen:</strong> Schüler erhalten sofortige Feedback und können in ihrem eigenen Tempo lernen</li>
-          <li><strong>Differenzierung:</strong> KI-Tools passen Inhalte an verschiedene Leistungsniveaus an</li>
-        </ul>
-      </div>
-      
-      <h2>Fazit</h2>
-      <p>Es gibt nicht das eine "beste" KI-Tool – es kommt auf Ihre spezifischen Anforderungen an. Die in diesem Artikel genannten Tools bieten jeweils unterschiedliche Stärken und Spezialisierungen. Der Schlüssel liegt darin, diese Tools bewusst und verantwortungsvoll einzusetzen, ihre Ergebnisse kritisch zu hinterfragen und immer die ethischen und datenschutzrechtlichen Grenzen zu beachten.</p>
-    `,
+    title: "Meinungsbild unter Schülern zur Nutzung von KI im Klassenraum",
+    description:
+      "Befragungsergebnisse zeigen, wie Schüler:innen KI im Unterricht nutzen und welche Erwartungen sie an die Zukunft haben.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "~6 Min.",
+    date: "Nicht klar angegeben",
+    author: "bildung.digital",
+    externalUrl:
+      "https://www.bildung.digital/artikel/wie-schuelerinnen-und-schueler-ki-im-unterricht-nutzen",
+    content:
+      "<p>Der Artikel beschreibt Ergebnisse einer Befragung zur KI-Nutzung im Unterricht: persönliche Lernhilfe, mehr Motivation und der Wunsch nach langfristiger Nutzung.</p>",
     sources: [
+      "https://www.bildung.digital/artikel/wie-schuelerinnen-und-schueler-ki-im-unterricht-nutzen",
     ],
-    relatedArticleIds: [2, 4, 5],
+    relatedArticleIds: [2, 5, 6],
   },
   {
     id: 2,
-    title: "KI-gestützte Unterrichtsplanung: Praktische Tipps",
-    description: "Wie Sie KI nutzen können, um effektiver zu planen ohne die Qualität zu verlieren.",
-    category: "Lehrer",
-    readTime: "7 Min.",
-    date: "9. Jan 2026",
-    author: "Prof. Michael Hoffmann",
-    content: `
-      <h2>Warum KI für Lehrkräfte wichtig ist</h2>
-      <p>Die Unterrichtsplanung ist zeitaufwändig. Lehrkräfte investieren Stunden in die Vorbereitung von Materialien, Tests und Lektionsplänen. KI-Tools können diesen Prozess erheblich vereinfachen und mehr Zeit für das Wesentliche - die Schüler - freigeben.</p>
-      
-      <h2>Praktische Anwendungen</h2>
-      <h3>1. Materialien erstellen</h3>
-      <p>KI kann helfen, Arbeitsblätter, Tests und Übungsmaterialien zu erstellen. Durch die Angabe von Lernzielen und Themen können Lehrkräfte schnell professionelle Materialien generieren.</p>
-      
-      <h3>2. Lektionspläne entwickeln</h3>
-      <p>Nutzen Sie KI, um strukturierte Lektionspläne zu erstellen, die verschiedene Lernstile berücksichtigen. Das Tool kann Aktivitäten vorschlagen, die Schüler engagieren und Konzepte verdeutlichen.</p>
-      
-      <h3>3. Differenzierung unterstützen</h3>
-      <p>KI kann Materialien auf verschiedene Leistungsstufen anpassen. Dies hilft Lehrkräften, alle Schüler zu erreichen, unabhängig von ihrem derzeitigen Leistungsniveau.</p>
-      
-      <h2>Best Practices</h2>
-      <p>Beginnen Sie mit kleinen Aufgaben und bauen Sie Ihre Vertrautheit mit KI-Tools schrittweise auf. Prüfen Sie immer die generierten Materialien auf Genauigkeit und Angemessenheit vor der Verwendung im Klassenzimmer.</p>
-    `,
-    sources: [
-      "Ministry of Education AI Guidelines (2025)",
-      "Teachers' Digital Literacy Report (2024)",
-      "Educational Technology Today (2025)",
-    ],
-    relatedArticleIds: [1, 6],
+    title:
+      "Gezielte Nutzung der KI in der Lehre schützt vor fehlerhaftem und unerwünschtem Output",
+    description:
+      "Wie generative KI Lehrende bei Kursplanung und Lernzielen unterstützt, ohne pädagogische Urteile zu ersetzen.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "~8-9 Min.",
+    date: "05.11.2024",
+    author: "Charlotte Pardey (Forschung & Lehre)",
+    externalUrl:
+      "https://www.forschung-und-lehre.de/lehre/was-kann-ki-fuer-lehrende-tun-6729",
+    content:
+      "<p>Der Beitrag zeigt konkrete Einsatzfelder generativer KI in der Hochschullehre und betont die Rolle menschlicher pädagogischer Verantwortung.</p>",
+    sources: ["https://www.forschung-und-lehre.de/lehre/was-kann-ki-fuer-lehrende-tun-6729"],
+    relatedArticleIds: [3, 4, 5],
   },
   {
     id: 3,
-    title: "Rechtliche Grundlagen: KI und Urheberrecht im Unterricht",
-    description: "Was dürfen Lehrer und Schüler? Ein Überblick über die aktuelle Rechtslage in Deutschland.",
-    category: "Richtlinien",
-    readTime: "6 Min.",
-    date: "8. Jan 2026",
-    author: "Dr. Jürgen Schneider",
-    content: `
-      <h2>Das deutsche Urheberrecht im KI-Zeitalter</h2>
-      <p>Das deutsche Urheberrecht befindet sich in einer wichtigen Übergangsphase. Mit der zunehmenden Nutzung von KI-Tools stellen sich neue Fragen darüber, was erlaubt ist und was nicht.</p>
-      
-      <h2>KI-generierte Inhalte</h2>
-      <h3>Urheberschaft von KI-Inhalten</h3>
-      <p>In Deutschland werden KI-generierte Inhalte grundsätzlich nicht als geschützt betrachtet, wenn sie vollständig von einer KI erstellt wurden. Der Mensch, der die KI bedient hat, erhält automatisch keine Urheberrechte.</p>
-      
-      <h3>Nutzung von KI-Inhalten in der Schule</h3>
-      <p>Lehrkräfte und Schüler dürfen KI nutzen, um Materialien zu erstellen, solange sie keine bestehenden Urheberrechte verletzen. Allerdings sollte transparent kommuniziert werden, dass KI bei der Erstellung beteiligt war.</p>
-      
-      <h2>Datenschutz und KI</h2>
-      <p>Beim Einsatz von KI-Tools müssen Datenschutzbestimmungen beachtet werden. Personenbezogene Daten von Schülern sollten nicht in externe KI-Systeme eingegeben werden, ohne entsprechende Zustimmung.</p>
-      
-      <h2>Empfehlungen für Schulen</h2>
-      <p>Schulen sollten klare Richtlinien für die Nutzung von KI etablieren, die sowohl Chancen als auch Risiken adressieren.</p>
-    `,
-    sources: [
-      "Deutsches Urheberrechtsgesetz (UrhG) 2024",
-      "GDPR und Schulen Leitfaden",
-      "Bundeszentrale für politische Bildung (2025)",
-      "Legal Tech Review (2025)",
-    ],
-    relatedArticleIds: [1, 5],
+    title: "Podcastfolge des Deutschlandfunks zur KI-Nutzung an Hochschulen",
+    description:
+      "Podcast über Chancen und Risiken von KI auf dem Hochschulcampus in Lehre, Prüfungen und Betreuung.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "35 Min. (Podcast)",
+    date: "22.05.2025",
+    author: "Deutschlandfunk",
+    externalUrl:
+      "https://www.deutschlandfunk.de/ki-campus-hochschule-lehre-professor-100.html",
+    content:
+      "<p>Audio-Beitrag zur praktischen KI-Nutzung an Hochschulen mit Fokus auf Perspektiven von Lehrenden und Studierenden.</p>",
+    sources: ["https://www.deutschlandfunk.de/ki-campus-hochschule-lehre-professor-100.html"],
+    relatedArticleIds: [2, 4],
   },
   {
     id: 4,
-    title: "Hausarbeiten im KI-Zeitalter: Wissenschaftliches Arbeiten neu gedacht",
-    description: "Wie du KI ethisch korrekt für akademische Arbeiten einsetzen kannst.",
-    category: "Studenten",
-    readTime: "8 Min.",
-    date: "10. Jan 2026",
-    author: "Prof. Dr. Anna Richter",
-    content: `
-      <h2>Die Herausforderung</h2>
-      <p>Studenten stehen vor einer beispiellosen Herausforderung: Wie können sie KI nutzen, ohne ihre akademische Integrität zu kompromittieren? Die Antwort ist nicht so einfach wie ein pauschales "Ja" oder "Nein".</p>
-      
-      <h2>Ethische Nutzung von KI</h2>
-      <h3>Was ist erlaubt?</h3>
-      <p>KI kann ein wertvolles Werkzeug sein für:</p>
-      <p>- Brainstorming und Ideenentwicklung<br>
-      - Literaturrecherche und Zusammenfassungen<br>
-      - Überprüfung von Strukturen und Argumentationen<br>
-      - Sprachkorrektionen und Stilverbesserungen</p>
-      
-      <h3>Was ist nicht erlaubt?</h3>
-      <p>KI sollte nicht verwendet werden für:</p>
-      <p>- Komplettes Schreiben der Arbeit<br>
-      - Verbergen von KI-Nutzung<br>
-      - Plagiat ohne Zitierung</p>
-      
-      <h2>Best Practices</h2>
-      <p>Dokumentieren Sie Ihre KI-Nutzung transparent. Viele Universitäten erfordern mittlerweile eine Offenlegung, wenn KI bei der Erstellung von Arbeiten verwendet wurde. Dies ist nicht automatisch negativ - es zeigt Bewusstsein und Verantwortung.</p>
-      
-      <h2>Die Zukunft akademischer Arbeiten</h2>
-      <p>Mit der Zeit werden sich auch die Universitätsrichtlinien weiter entwickeln. Der Fokus wird sich wahrscheinlich von der bloßen Beschränkung der KI-Nutzung zu deren ethisch verantwortungsvollen Einsatz verschieben.</p>
-    `,
-    sources: [
-      "Council of Canadian Academies (2025)",
-      "Academic Integrity in the Age of AI (2025)",
-      "International Journal of Academic Research (2025)",
-    ],
-    relatedArticleIds: [1, 3, 5],
+    title: "Aktuelles Übersichtspaper des BMBF zum Stand der KI in Bildung und Lehre",
+    description:
+      "Wissenschaftlicher Überblick zu KI-Tools, Chancen und Risiken für Lernprozesse in Schule und Hochschule.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "~15-20 Min.",
+    date: "2025",
+    author: "Empirische Bildungsforschung (BMBF/SFJ)",
+    externalUrl: "https://www.empirische-bildungsforschung-bmbfsfj.de/img/KI_Review.pdf",
+    content:
+      "<p>Review-Paper mit aktuellem Forschungsstand zur KI in Bildung und Lehre und Empfehlungen für sinnvolle Anwendung.</p>",
+    sources: ["https://www.empirische-bildungsforschung-bmbfsfj.de/img/KI_Review.pdf"],
+    relatedArticleIds: [2, 3, 5, 6],
   },
   {
     id: 5,
-    title: "KI als Lernhilfe richtig nutzen",
-    description: "So unterstützt KI beim Lernen, ohne dass du betrugst oder den Lerneffekt verlierst.",
-    category: "Schüler",
-    readTime: "5 Min.",
-    date: "10. Jan 2026",
-    author: "Tom Wagner",
-    content: `
-      <h2>KI als dein persönlicher Tutor</h2>
-      <p>KI-Tools können wie ein persönlicher Nachhilfelehrer funktionieren - immer verfügbar, nie ungeduldig. Aber nur wenn du sie richtig nutzt!</p>
-      
-      <h2>Smarte Wege, KI zu nutzen</h2>
-      <h3>1. Konzepte erklären lassen</h3>
-      <p>Wenn du etwas nicht verstehst, frage die KI danach. Sie kann Konzepte aus verschiedenen Blickwinkeln erklären, bis es "klick" macht.</p>
-      
-      <h3>2. Fragen zum Lernen generieren</h3>
-      <p>Bitte die KI, Testfragen zu generieren. Dies hilft dir, dein Verständnis zu überprüfen, ohne die Antworten einfach abzuschreiben.</p>
-      
-      <h3>3. Deine Antworten überprüfen</h3>
-      <p>Nachdem du eine Aufgabe gelöst hast, kann die KI dir helfen, deine Logik zu überprüfen. So lernst du von deinen Fehlern.</p>
-      
-      <h2>Fallen, die du vermeiden solltest</h2>
-      <p>Lass die KI nicht einfach deine Hausaufgaben machen. Das mag kurzfristig einfacher sein, aber du verpasst das Lernen. Die echten Probleme entstehen beim Examen, wenn du auf die KI nicht zurückgreifen kannst.</p>
-      
-      <h2>Die goldene Regel</h2>
-      <p>Nutze KI, um dein Verständnis zu vertiefen, nicht um es zu umgehen. Der wahre Wert liegt darin, dass du mehr lernst, nicht weniger arbeitest.</p>
-    `,
+    title:
+      "Artikel zum Konzept einer Einführung von Niveaustufen der Schüler bei der KI-Nutzung",
+    description:
+      "KI-Kompetenzmodell mit drei Niveaustufen für Schülerinnen, Schüler und Lehrkräfte.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "~8 Min.",
+    date: "14.03.2025 (akt. 03.09.2025)",
+    author: "Joscha Falck (Deutsches Schulportal)",
+    externalUrl:
+      "https://deutsches-schulportal.de/expertenstimmen/ki-kompetenzen-diese-faehigkeiten-brauchen-lehrkraefte-und-schueler/",
+    content:
+      "<p>Vorgestellt wird ein Kompetenzmodell für Lernen über, mit und durch KI von Basis- bis Expertenniveau.</p>",
     sources: [
-      "Learning Science Review (2025)",
-      "Cognitive Psychology and Education (2024)",
-      "Student Success Center Study (2025)",
+      "https://deutsches-schulportal.de/expertenstimmen/ki-kompetenzen-diese-faehigkeiten-brauchen-lehrkraefte-und-schueler/",
     ],
-    relatedArticleIds: [1, 3, 4],
+    relatedArticleIds: [1, 2, 4, 6],
   },
   {
     id: 6,
-    title: "Prüfungsformate im Wandel: Alternativen zur klassischen Hausarbeit",
-    description: "Innovative Prüfungskonzepte für eine Welt mit allgegenwärtiger KI.",
-    category: "Professoren",
-    readTime: "12 Min.",
-    date: "7. Jan 2026",
-    author: "Prof. Dr. Reinhardt Beck",
-    content: `
-      <h2>Die traditionelle Hausarbeit unter Druck</h2>
-      <p>Mit der allgegenwärtigen Verfügbarkeit von KI-Tools wird die traditionelle Hausarbeit als Evaluierungsmittel zunehmend in Frage gestellt. Es ist an der Zeit, innovative Prüfungsformate zu erkunden.</p>
-      
-      <h2>Neue Prüfungsformate</h2>
-      <h3>1. Mündliche Prüfungen und Verteidigungen</h3>
-      <p>Eine Rückkehr zu mündlichen Examen und Verteidigungen von Arbeiten kann sicherstellen, dass Studenten wirklich verstehen, worüber sie schreiben.</p>
-      
-      <h3>2. Projektbasierte Bewertungen</h3>
-      <p>Praktische Projekte, die in der realen Welt anwendbar sind, können besser bewerten, ob Studenten Konzepte wirklich verstanden haben.</p>
-      
-      <h3>3. Prozessbasierte Bewertung</h3>
-      <p>Die Bewertung des Prozesses, nicht nur des Endprodukts. Dies bedeutet, den Weg zu bewerten, den der Student gegangen ist, einschließlich Recherche, Überarbeitungen und Überlegungen.</p>
-      
-      <h3>4. Prüfung mit offenen Materialien</h3>
-      <p>Examen, bei denen Studenten ihre Notizen, Bücher und sogar KI-Tools verwenden dürfen, fordern sie auf, wirklich kritisch zu denken, anstatt Wissen auswendig zu lernen.</p>
-      
-      <h2>Chancen und Herausforderungen</h2>
-      <p>Diese neuen Formate erfordern mehr Zeit für Dozenten, bieten aber ein gerechteres und authentischeres Bild der Fähigkeiten der Studenten.</p>
-      
-      <h2>Implementierung</h2>
-      <p>Eine schrittweise Einführung dieser Formate, gepaart mit klarer Kommunikation zu den Studenten über die Gründe für diese Änderungen, wird den Übergang erleichtern.</p>
-    `,
+    title: "Unterrichtseinheit zu ethischen und praktischen Fragen der KI",
+    description:
+      "Material für den Unterricht zur reflektierten Beurteilung von Chancen und Gefahren von KI.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "~10 Min.",
+    date: "Nicht klar angegeben",
+    author: "Wandelvernetztdenken.ch",
+    externalUrl:
+      "https://www.wandelvernetztdenken.ch/aktuelle-themen/thema-5-kuenstliche-intelligenz-%e2%80%92-ethische-und-praktische-fragen/",
+    content:
+      "<p>Die Unterrichtseinheit behandelt ethische und praktische Fragen zu KI und stärkt die Urteilsfähigkeit von Lernenden.</p>",
     sources: [
-      "Assessment in Higher Education Journal (2025)",
-      "The Chronicle of Higher Education (2025)",
-      "Innovative Assessment Practices (2024)",
-      "Professional Development Quarterly (2025)",
+      "https://www.wandelvernetztdenken.ch/aktuelle-themen/thema-5-kuenstliche-intelligenz-%e2%80%92-ethische-und-praktische-fragen/",
     ],
-    relatedArticleIds: [2, 3, 4],
+    relatedArticleIds: [1, 4, 5],
+  },
+  {
+    id: 7,
+    title: "Zentrale Informationsseite des Landesbildungsservers (Berlin-Brandenburg)",
+    description:
+      "Orientierungsseite mit Materialien, Projekten und weiterführenden Links zu digitaler Bildung und KI im schulischen Kontext.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "Variabel",
+    date: "Laufend aktualisiert",
+    author: "Landesbildungsserver Berlin-Brandenburg",
+    externalUrl: "https://bildungsserver.berlin-brandenburg.de/jwd/startseite",
+    content:
+      "<p>Zentrale Einstiegsseite mit Link-Sammlung und Ressourcen für digitale Bildung und KI im Schulbereich.</p>",
+    sources: ["https://bildungsserver.berlin-brandenburg.de/jwd/startseite"],
+    relatedArticleIds: [8, 12, 25],
+  },
+  {
+    id: 8,
+    title: "KI-Campus - offene Online-Kurse (MOOCs)",
+    description:
+      "Kostenfreie Online-Kurse zu KI-Grundlagen, Anwendungen und gesellschaftlichen Fragen für Bildung und Weiterbildung.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "Kursabhängig",
+    date: "Laufend erweitert",
+    author: "KI-Campus",
+    externalUrl: "https://ki-campus.org/",
+    content:
+      "<p>Offene Lernplattform mit strukturierten KI-Kursen von Grundlagen bis Vertiefung.</p>",
+    sources: ["https://ki-campus.org/"],
+    relatedArticleIds: [20, 24],
+  },
+  {
+    id: 9,
+    title: "Brauchen wir in Zeiten von KI noch Lehrkräfte? (Faktencheck)",
+    description:
+      "Wissenschaftlich fundierter Beitrag dazu, warum KI Lehrkräfte unterstützt, aber nicht ersetzt.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "~7 Min.",
+    date: "Nicht klar angegeben",
+    author: "Empirische Bildungsforschung (BMBF/SFJ)",
+    externalUrl:
+      "https://www.empirische-bildungsforschung-bmbfsfj.de/de/Faktencheck-3-Brauchen-wir-in-Zeiten-von-KI-noch-Lehrkrafte-2584.html",
+    content:
+      "<p>Der Faktencheck zeigt die Grenzen automatisierter Systeme und begründet die zentrale Rolle pädagogischer Professionalität.</p>",
+    sources: [
+      "https://www.empirische-bildungsforschung-bmbfsfj.de/de/Faktencheck-3-Brauchen-wir-in-Zeiten-von-KI-noch-Lehrkrafte-2584.html",
+    ],
+    relatedArticleIds: [4, 5, 27],
+  },
+  {
+    id: 10,
+    title: "Ideen zur Rolle von KI im Klassenzimmer der Zukunft",
+    description:
+      "Didaktische Szenarien und Zukunftsideen zur Rolle von KI im Unterricht und zu veränderten Lernrollen.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "~8 Min.",
+    date: "Nicht klar angegeben",
+    author: "Bundeszentrale für politische Bildung (bpb)",
+    externalUrl:
+      "https://www.bpb.de/lernen/digitale-bildung/werkstatt/256629/ideen-zur-rolle-von-kuenstlicher-intelligenz-im-klassenzimmer-der-zukunft/",
+    content:
+      "<p>Sammlung didaktischer Zukunftsszenarien für den reflektierten KI-Einsatz im Unterricht.</p>",
+    sources: [
+      "https://www.bpb.de/lernen/digitale-bildung/werkstatt/256629/ideen-zur-rolle-von-kuenstlicher-intelligenz-im-klassenzimmer-der-zukunft/",
+    ],
+    relatedArticleIds: [22, 27],
+  },
+  {
+    id: 11,
+    title: "KI im Bildungssystem - Schlussbericht (Telekom-Stiftung)",
+    description:
+      "Umfangreiche Studie zu Potenzialen, Grenzen und Handlungsempfehlungen für KI im Bildungssystem.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "~20-30 Min.",
+    date: "Nicht klar angegeben",
+    author: "Deutsche Telekom Stiftung",
+    externalUrl:
+      "https://www.telekom-stiftung.de/sites/default/files/files/media/publications/KI%20Bildung%20Schlussbericht.pdf",
+    content:
+      "<p>Der Schlussbericht beleuchtet strategische Entwicklungsfelder für Schule und Bildungspolitik beim KI-Einsatz.</p>",
+    sources: [
+      "https://www.telekom-stiftung.de/sites/default/files/files/media/publications/KI%20Bildung%20Schlussbericht.pdf",
+    ],
+    relatedArticleIds: [25, 26],
+  },
+  {
+    id: 12,
+    title: "KI in der Schule - Denkimpuls Bildung (Initiative D21)",
+    description:
+      "Positionspapier zur strategischen Integration von KI in Schulen mit Fokus auf Kompetenzen und Infrastruktur.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "~10-12 Min.",
+    date: "Nicht klar angegeben",
+    author: "Initiative D21",
+    externalUrl:
+      "https://initiatived21.de/uploads/03_Studien-Publikationen/Denkimpulse-Bildung/01-KI-in-der-Schule/d21denkimpuls-bildung01-schule_ki.pdf",
+    content:
+      "<p>Denkimpuls mit Empfehlungen zu Rahmenbedingungen, Infrastruktur und Kompetenzaufbau im Schulkontext.</p>",
+    sources: [
+      "https://initiatived21.de/uploads/03_Studien-Publikationen/Denkimpulse-Bildung/01-KI-in-der-Schule/d21denkimpuls-bildung01-schule_ki.pdf",
+    ],
+    relatedArticleIds: [11, 26],
+  },
+  {
+    id: 13,
+    title: "KI-Area9 - Künstliche Intelligenz im Klassenraum",
+    description:
+      "Praxisnahes Dossier mit Beispielen, Interviews und Unterrichtsideen zum Einsatz von KI im Schulalltag.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "~10 Min.",
+    date: "Nicht klar angegeben",
+    author: "Deutsches Schulportal",
+    externalUrl:
+      "https://deutsches-schulportal.de/unterricht/ki-area9-kuenstliche-intelligenz-im-klassenraum/",
+    content:
+      "<p>Dossier mit erprobten Praxisbeispielen für Lehrkräfte und Schulleitungen.</p>",
+    sources: [
+      "https://deutsches-schulportal.de/unterricht/ki-area9-kuenstliche-intelligenz-im-klassenraum/",
+    ],
+    relatedArticleIds: [14, 27],
+  },
+  {
+    id: 14,
+    title: "KI als Leistungsbeschleuniger im Bildungsbereich",
+    description:
+      "Analyse, wie KI Lernprozesse individualisieren und beschleunigen kann, inklusive pädagogischer Chancen und Risiken.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "~6-7 Min.",
+    date: "Nicht klar angegeben",
+    author: "Deutscher Bildungsserver",
+    externalUrl:
+      "https://www.bildungsserver.de/bildung+innovation/kuenstliche-intelligenz-kann-im-bildungsbereich-als-leistungsbeschleuniger-eingesetzt-werden-1161.html",
+    content:
+      "<p>Der Beitrag betrachtet Potenziale für adaptive Lernwege und die Grenzen beschleunigter Lernprozesse.</p>",
+    sources: [
+      "https://www.bildungsserver.de/bildung+innovation/kuenstliche-intelligenz-kann-im-bildungsbereich-als-leistungsbeschleuniger-eingesetzt-werden-1161.html",
+    ],
+    relatedArticleIds: [15, 27],
+  },
+  {
+    id: 15,
+    title: "Künstliche Intelligenz im Klassenzimmer - Überblick",
+    description:
+      "Übersichtsartikel zu Einsatzmöglichkeiten von KI im Unterricht mit didaktischen Perspektiven und Praxisbeispielen.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "~7 Min.",
+    date: "Nicht klar angegeben",
+    author: "Deutscher Bildungsserver",
+    externalUrl:
+      "https://www.bildungsserver.de/bildung+innovation/kuenstliche-intelligenz-im-klassenzimmer-1149.html",
+    content:
+      "<p>Ein kompakter Einstieg in pädagogische Chancen, Risiken und Beispiele für den Unterricht.</p>",
+    sources: [
+      "https://www.bildungsserver.de/bildung+innovation/kuenstliche-intelligenz-im-klassenzimmer-1149.html",
+    ],
+    relatedArticleIds: [14, 22],
+  },
+  {
+    id: 16,
+    title: "Unterrichtseinheit: Wie KI unsere Welt verändert (Mittelstufe)",
+    description:
+      "Ausgearbeitete Unterrichtseinheit zu gesellschaftlichen, ethischen und technologischen Aspekten von KI.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "Mehrere Unterrichtsstunden",
+    date: "Nicht klar angegeben",
+    author: "SPIEGEL Ed",
+    externalUrl:
+      "https://ed.spiegel.de/unterrichtsmaterial/unterrichtseinheiten-fuer-die-mittelstufe/wie-kuenstliche-intelligenz-unsere-welt-veraendert",
+    content:
+      "<p>Didaktisch aufbereitete Unterrichtseinheit mit Aufgaben und Reflexion zur KI im Alltag.</p>",
+    sources: [
+      "https://ed.spiegel.de/unterrichtsmaterial/unterrichtseinheiten-fuer-die-mittelstufe/wie-kuenstliche-intelligenz-unsere-welt-veraendert",
+    ],
+    relatedArticleIds: [19, 18],
+  },
+  {
+    id: 17,
+    title: "Unterrichtseinheit: Voll smart - meine Zukunft mit KI",
+    description:
+      "Unterrichtsmodul zur reflektierten Auseinandersetzung mit KI im Alltag mit Fokus auf Medienkompetenz.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "Mehrere Unterrichtsstunden",
+    date: "Nicht klar angegeben",
+    author: "digibits",
+    externalUrl:
+      "https://www.digibits.de/materialien/digibits-unterrichtseinheit-voll-smart-meine-zukunft-mit-ki/",
+    content:
+      "<p>Modul für Schule und Projektarbeit zu Zukunftsfragen und KI-Kompetenzen.</p>",
+    sources: [
+      "https://www.digibits.de/materialien/digibits-unterrichtseinheit-voll-smart-meine-zukunft-mit-ki/",
+    ],
+    relatedArticleIds: [16, 19],
+  },
+  {
+    id: 18,
+    title: "Praxisleitfaden: ChatGPT & textgenerierende KI",
+    description:
+      "Leitfaden zu Chancen, Risiken, Datenschutz und Missbrauch textgenerierender KI im Bildungsbereich.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "~12-15 Min.",
+    date: "Nicht klar angegeben",
+    author: "klicksafe",
+    externalUrl:
+      "https://www.klicksafe.de/fileadmin/cms/download/Material/klicksafe_Material-paed-Praxis_ChatGPT.pdf",
+    content:
+      "<p>Praxisorientierte Hinweise für einen sicheren und reflektierten Einsatz von Text-KI im Unterricht.</p>",
+    sources: [
+      "https://www.klicksafe.de/fileadmin/cms/download/Material/klicksafe_Material-paed-Praxis_ChatGPT.pdf",
+    ],
+    relatedArticleIds: [21, 25],
+  },
+  {
+    id: 19,
+    title: "Künstliche Intelligenz & ChatGPT - Bildungsmaterialien (Siemens Stiftung)",
+    description:
+      "Materialien zur Funktionsweise und Einordnung von KI-Systemen für MINT- und fächerübergreifenden Unterricht.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "Materialabhängig",
+    date: "Nicht klar angegeben",
+    author: "Siemens Stiftung",
+    externalUrl:
+      "https://medienportal.siemens-stiftung.org/de/kuenstliche-intelligenz-chatgpt-114734",
+    content:
+      "<p>Materialsammlung zur technischen Einordnung von KI und didaktischer Nutzung in verschiedenen Fächern.</p>",
+    sources: [
+      "https://medienportal.siemens-stiftung.org/de/kuenstliche-intelligenz-chatgpt-114734",
+    ],
+    relatedArticleIds: [16, 17],
+  },
+  {
+    id: 20,
+    title: "Sinnvolle Aufgaben stellen, wenn KI schon alles kann",
+    description:
+      "Didaktischer Beitrag zur Gestaltung anspruchsvoller Lernaufgaben trotz KI-Tools mit Fokus auf Reflexion.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "~7-8 Min.",
+    date: "Nicht klar angegeben",
+    author: "Deutsches Schulportal",
+    externalUrl:
+      "https://deutsches-schulportal.de/unterricht/wenn-die-ki-schon-alles-kann-sinnvolle-aufgaben-fuer-den-projektunterricht-stellen/",
+    content:
+      "<p>Der Beitrag zeigt, wie Lernaufgaben auf Problemlösen, Transfer und Reflexion ausgerichtet werden können.</p>",
+    sources: [
+      "https://deutsches-schulportal.de/unterricht/wenn-die-ki-schon-alles-kann-sinnvolle-aufgaben-fuer-den-projektunterricht-stellen/",
+    ],
+    relatedArticleIds: [13, 27],
+  },
+  {
+    id: 21,
+    title: "KI-Superkräfte für die Umwelt",
+    description:
+      "Unterrichtsmaterialien, die KI mit Umwelt- und Nachhaltigkeitsthemen verbinden und reale Problemstellungen aufgreifen.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "Unterrichtsabhängig",
+    date: "Nicht klar angegeben",
+    author: "Science on Stage Deutschland",
+    externalUrl: "https://www.science-on-stage.de/material/ki-superkraefte-fuer-die-umwelt",
+    content:
+      "<p>Fachübergreifende Materialien zu KI-Anwendungen im Kontext Umwelt und Nachhaltigkeit.</p>",
+    sources: ["https://www.science-on-stage.de/material/ki-superkraefte-fuer-die-umwelt"],
+    relatedArticleIds: [16, 19],
+  },
+  {
+    id: 22,
+    title: "Fobizz-Materialsammlung: KI im Schulalltag",
+    description:
+      "Kuratiertes Materialpaket mit Fortbildungen, Tools und Unterrichtsideen für den schulischen Alltag.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "Variabel",
+    date: "Nicht klar angegeben",
+    author: "fobizz",
+    externalUrl: "https://app.fobizz.com/collections/9a69f1cf-7385-4f9a-a9dc-f5b3cf445ebf",
+    content:
+      "<p>Sammlung praxiserprobter Ressourcen für Unterrichtsplanung und professionelle Weiterbildung.</p>",
+    sources: ["https://app.fobizz.com/collections/9a69f1cf-7385-4f9a-a9dc-f5b3cf445ebf"],
+    relatedArticleIds: [13, 20],
+  },
+  {
+    id: 23,
+    title: "Prompt Engineering - Spot if AI",
+    description:
+      "Einführung in das gezielte Formulieren von Prompts als Schlüsselkompetenz im Umgang mit KI-Systemen.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "~5-6 Min.",
+    date: "Nicht klar angegeben",
+    author: "articlett.schule",
+    externalUrl: "https://articlett.schule/spot-if-ai-prompt-engineering/",
+    content:
+      "<p>Praktischer Einstieg in Prompting mit konkreten Regeln und Beispielen für Bildungskontexte.</p>",
+    sources: ["https://articlett.schule/spot-if-ai-prompt-engineering/"],
+    relatedArticleIds: [18, 19],
+  },
+  {
+    id: 24,
+    title: "KI in der Schule diskutieren (OER)",
+    description:
+      "Open-Source-Materialien zur kritischen Auseinandersetzung mit KI, Ethik und gesellschaftlichen Auswirkungen.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "Variabel",
+    date: "Nicht klar angegeben",
+    author: "Jugend hackt",
+    externalUrl: "https://jugendhackt.org/oer/projekte/ki-in-der-schule-diskutieren/",
+    content:
+      "<p>OER-Projektmaterial für Diskussion, Reflexion und partizipative Unterrichtsformate rund um KI.</p>",
+    sources: ["https://jugendhackt.org/oer/projekte/ki-in-der-schule-diskutieren/"],
+    relatedArticleIds: [16, 17],
+  },
+  {
+    id: 25,
+    title: "Unterrichtseinheit: KI, ChatGPT & Co.",
+    description:
+      "Unterrichtseinheit zur praktischen Nutzung und Reflexion von KI-Tools mit Alltagsbezug.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "Mehrere Unterrichtsstunden",
+    date: "Nicht klar angegeben",
+    author: "Zeit für die Schule",
+    externalUrl:
+      "https://www.zeitfuerdieschule.de/materialien/unterrichtseinheit/kuenstliche-intelligenz-chatgpt-co/",
+    content:
+      "<p>Didaktische Einheit zur strukturierten Erprobung und Reflexion von KI-Anwendungen im Unterricht.</p>",
+    sources: [
+      "https://www.zeitfuerdieschule.de/materialien/unterrichtseinheit/kuenstliche-intelligenz-chatgpt-co/",
+    ],
+    relatedArticleIds: [16, 17],
+  },
+  {
+    id: 26,
+    title: "KI-Kurs - Selbstlernplattform",
+    description:
+      "Interaktive Selbstlernplattform zu KI-Grundlagen für Schule, Studium und Weiterbildung.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "Modulabhängig",
+    date: "Nicht klar angegeben",
+    author: "KI-Kurs",
+    externalUrl: "https://ki-kurs.org/app/entry-page",
+    content:
+      "<p>Modularer Einstieg in KI-Kompetenzen mit Selbstlernformaten für unterschiedliche Niveaus.</p>",
+    sources: ["https://ki-kurs.org/app/entry-page"],
+    relatedArticleIds: [8, 24],
+  },
+  {
+    id: 27,
+    title: "Hinweise zu textgenerierenden KI-Systemen (Leitfaden)",
+    description:
+      "Wissenschaftlicher Leitfaden zum didaktischen Umgang mit Text-KI, Prüfungen und akademischer Integrität.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "~10-15 Min.",
+    date: "Nicht klar angegeben",
+    author: "Wissenschaftliche Autor:innengruppe (ResearchGate)",
+    externalUrl:
+      "https://www.researchgate.net/publication/368033415_Hinweise_zu_textgenerierenden_KI-Systemen_im_Kontext_von_Lehre_und_Lernen",
+    content:
+      "<p>Leitfaden für Hochschullehre zu Transparenz, Prüfungsdesign und verantwortlicher Nutzung von Text-KI.</p>",
+    sources: [
+      "https://www.researchgate.net/publication/368033415_Hinweise_zu_textgenerierenden_KI-Systemen_im_Kontext_von_Lehre_und_Lernen",
+    ],
+    relatedArticleIds: [2, 3, 24],
+  },
+  {
+    id: 28,
+    title: "KI in der Schule - APuZ",
+    description:
+      "Politisch-gesellschaftliche Einordnung von KI im schulischen Kontext mit Fokus auf Bildungsgerechtigkeit.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "~8 Min.",
+    date: "2023",
+    author: "Bundeszentrale für politische Bildung (APuZ)",
+    externalUrl:
+      "https://www.bpb.de/shop/zeitschriften/apuz/kuenstliche-intelligenz-2023/541500/ki-in-der-schule/",
+    content:
+      "<p>Der Beitrag ordnet KI in Schule aus demokratie- und bildungspolitischer Perspektive ein.</p>",
+    sources: [
+      "https://www.bpb.de/shop/zeitschriften/apuz/kuenstliche-intelligenz-2023/541500/ki-in-der-schule/",
+    ],
+    relatedArticleIds: [10, 26],
+  },
+  {
+    id: 29,
+    title: "Video-Reihe: KI einfach erklärt (YouTube)",
+    description:
+      "Niedrigschwellige Video-Reihe zur Erklärung von KI-Grundlagen und Bildungsbezügen.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "Playlistabhängig",
+    date: "Nicht klar angegeben",
+    author: "YouTube-Kanal",
+    externalUrl:
+      "https://www.youtube.com/watch?v=gTo52bbMbyw&list=PLLHNRTxnLIPJLHcEK062cQde1ILAxDW3R&index=1",
+    content:
+      "<p>Video-Playlist mit Basiswissen und anschaulichen Erklärungen zu KI für Lernende.</p>",
+    sources: [
+      "https://www.youtube.com/watch?v=gTo52bbMbyw&list=PLLHNRTxnLIPJLHcEK062cQde1ILAxDW3R&index=1",
+    ],
+    relatedArticleIds: [8, 26],
+  },
+  {
+    id: 30,
+    title: "unidigital.news - KI & Hochschule",
+    description:
+      "Nachrichten- und Analyseportal zur Digitalisierung und KI im Hochschulkontext.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "Artikelabhängig",
+    date: "Nicht klar angegeben",
+    author: "unidigital.news",
+    externalUrl: "https://www.unidigital.news/",
+    content:
+      "<p>Portal mit laufenden Beiträgen zu KI-Entwicklungen in Studium, Lehre und Hochschulorganisation.</p>",
+    sources: ["https://www.unidigital.news/"],
+    relatedArticleIds: [3, 27],
+  },
+  {
+    id: 31,
+    title: "Handlungsempfehlungen: KI in der Bildung (DKJS)",
+    description:
+      "Praxisorientierte Empfehlungen für verantwortungsvollen und chancengerechten KI-Einsatz im Bildungssystem.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "~12 Min.",
+    date: "Nicht klar angegeben",
+    author: "Deutsche Kinder- und Jugendstiftung",
+    externalUrl:
+      "https://www.dkjs.de/publikation/handlungsempfehlungen-kuenstliche-intelligenz-in-der-bildung/",
+    content:
+      "<p>Empfehlungskatalog für Schulen und Bildungsträger mit Fokus auf Fairness, Zugang und Umsetzung.</p>",
+    sources: [
+      "https://www.dkjs.de/publikation/handlungsempfehlungen-kuenstliche-intelligenz-in-der-bildung/",
+    ],
+    relatedArticleIds: [25, 26],
+  },
+  {
+    id: 32,
+    title: "10 Handlungsempfehlungen - Weizenbaum-Institut",
+    description:
+      "Wissenschaftlich fundierte Leitlinien für Bildungseinrichtungen mit Fokus auf Ethik, Transparenz und Verantwortung.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "~6-7 Min.",
+    date: "Nicht klar angegeben",
+    author: "Weizenbaum-Institut",
+    externalUrl:
+      "https://www.weizenbaum-institut.de/news/detail/kuenstliche-intelligenz-in-der-bildung-10-handlungsempfehlungen/",
+    content:
+      "<p>Die Handlungsempfehlungen formulieren institutionelle Leitplanken für den verantwortlichen KI-Einsatz.</p>",
+    sources: [
+      "https://www.weizenbaum-institut.de/news/detail/kuenstliche-intelligenz-in-der-bildung-10-handlungsempfehlungen/",
+    ],
+    relatedArticleIds: [31, 11],
+  },
+  {
+    id: 33,
+    title: "KI in der Schule - Forscher fordern Umdenken (MDR)",
+    description:
+      "Journalistischer Beitrag über Forschungsperspektiven und die Notwendigkeit neuer Lern- und Prüfungsformate.",
+    audiences: ["Schüler", "Lehrer", "Allgemein"],
+    readTime: "~6-7 Min.",
+    date: "Nicht klar angegeben",
+    author: "MDR Wissen",
+    externalUrl:
+      "https://www.mdr.de/wissen/bildung/ki-in-der-schule-forscher-fordern-umdenken-anderes-lernen100.html",
+    content:
+      "<p>Beitrag zur Debatte über neue Kompetenzprofile und veränderte Prüfungs- und Unterrichtsformen.</p>",
+    sources: [
+      "https://www.mdr.de/wissen/bildung/ki-in-der-schule-forscher-fordern-umdenken-anderes-lernen100.html",
+    ],
+    relatedArticleIds: [20, 31],
   },
 ];
 
