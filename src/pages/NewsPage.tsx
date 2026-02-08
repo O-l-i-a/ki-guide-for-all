@@ -12,7 +12,7 @@ const NewsPage = () => {
   const renderArticleCard = (article: ArticleData) => (
     <a
       key={article.id}
-      href={article.externalUrl ?? `/article/${article.id}`}
+      href={article.externalUrl ?? `#/article/${article.id}`}
       target={article.externalUrl ? "_blank" : undefined}
       rel={article.externalUrl ? "noopener noreferrer" : undefined}
     >
