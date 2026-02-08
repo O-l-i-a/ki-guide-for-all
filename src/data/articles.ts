@@ -22,20 +22,200 @@ export const articles: ArticleData[] = [
     author: "Dr. Sarah Mueller",
     content: `
       <h2>Einführung</h2>
-      <p>Künstliche Intelligenz hat die Bildungslandschaft grundlegend verändert. Mit einer Fülle von KI-Tools wie ChatGPT, Claude und anderen Plattformen können Lehrer, Schüler und Studenten ihre Arbeitsabläufe optimieren. Doch welche Tools sind wirklich für den Bildungsbereich geeignet?</p>
-      
-      <h3>ChatGPT - Der Alleskönner</h3>
-      <p>ChatGPT von OpenAI ist wahrscheinlich das bekannteste KI-Tool. Mit seiner umfassenden Trainingsdatenbank kann es eine Vielzahl von Aufgaben bewältigen. Von der Erklärung komplexer Konzepte bis zur Unterstützung bei der Hausaufgabenvorbereitung - ChatGPT bietet vielfältige Funktionen für Studenten und Schüler.</p>
-      <p>Die Stärken von ChatGPT liegen in seiner Flexibilität und seiner Fähigkeit, längere Texte zu generieren. Allerdings sollten Nutzer kritisch hinterfragen, da das System gelegentlich fehlerhafte Informationen liefern kann.</p>
-      
-      <h3>Claude - Der Nachdenker</h3>
-      <p>Claude von Anthropic zeichnet sich durch einen nuancierten Ansatz aus. Das Tool legt mehr Wert auf Sicherheit und ethische Überlegungen. Für akademische Zwecke kann Claude besonders wertvoll sein, da es komplexe Argumentationen durchdenkt und differenzierte Antworten gibt.</p>
-      
-      <h3>Weitere Tools</h3>
-      <p>Neben diesen Hauptakteuren gibt es weitere spezialisierte KI-Tools für verschiedene Bildungsbereiche. Gemini, Copilot und andere bieten jeweils eigene Vorteile.</p>
-      
+      <p>Künstliche Intelligenz hat die Bildungslandschaft grundlegend verändert. Mit einer Fülle von KI-Tools wie ChatGPT, Claude und anderen Plattformen können Lehrer, Schüler und Studenten ihre Arbeitsabläufe optimieren. Doch welche Tools sind wirklich für den Bildungsbereich geeignet? In diesem Artikel vergleichen wir die wichtigsten KI-Assistenten anhand ihrer Stärken, Schwächen und Eignung für den Bildungsbereich.</p>
+
+      <h2>Vergleichsübersicht</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Kriterium</th>
+            <th>ChatGPT</th>
+            <th>Claude</th>
+            <th>Gemini</th>
+            <th>Copilot</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Anbieter</strong></td>
+            <td>OpenAI</td>
+            <td>Anthropic</td>
+            <td>Google</td>
+            <td>Microsoft</td>
+          </tr>
+          <tr>
+            <td><strong>Kostenlose Version</strong></td>
+            <td>✅ Ja</td>
+            <td>✅ Ja</td>
+            <td>✅ Ja</td>
+            <td>✅ Ja</td>
+          </tr>
+          <tr>
+            <td><strong>Texterstellung</strong></td>
+            <td>⭐⭐⭐⭐⭐</td>
+            <td>⭐⭐⭐⭐⭐</td>
+            <td>⭐⭐⭐⭐</td>
+            <td>⭐⭐⭐⭐</td>
+          </tr>
+          <tr>
+            <td><strong>Quellenangaben</strong></td>
+            <td>⭐⭐⭐</td>
+            <td>⭐⭐⭐⭐</td>
+            <td>⭐⭐⭐⭐⭐</td>
+            <td>⭐⭐⭐⭐⭐</td>
+          </tr>
+          <tr>
+            <td><strong>Datenschutz</strong></td>
+            <td>⭐⭐⭐</td>
+            <td>⭐⭐⭐⭐⭐</td>
+            <td>⭐⭐⭐</td>
+            <td>⭐⭐⭐⭐</td>
+          </tr>
+          <tr>
+            <td><strong>Bildungseignung</strong></td>
+            <td>⭐⭐⭐⭐</td>
+            <td>⭐⭐⭐⭐⭐</td>
+            <td>⭐⭐⭐⭐</td>
+            <td>⭐⭐⭐⭐</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <hr />
+
+      <h2>🤖 ChatGPT — Der Alleskönner</h2>
+      <p>ChatGPT von OpenAI ist wahrscheinlich das bekannteste KI-Tool. Mit seiner umfassenden Trainingsdatenbank kann es eine Vielzahl von Aufgaben bewältigen – von der Erklärung komplexer Konzepte bis zur Unterstützung bei der Hausaufgabenvorbereitung.</p>
+
+      <h3>✅ Vorteile</h3>
+      <ul>
+        <li><strong>Vielseitigkeit:</strong> Beherrscht Texterstellung, Zusammenfassungen, Übersetzungen und kreatives Schreiben</li>
+        <li><strong>Lange Texte:</strong> Generiert ausführliche und gut strukturierte Antworten</li>
+        <li><strong>Plugins & GPTs:</strong> Erweiterbar durch spezialisierte Mini-Anwendungen (z.B. Mathe-Tutor, Sprachtrainer)</li>
+        <li><strong>Große Community:</strong> Umfangreiche Ressourcen und Tutorials verfügbar</li>
+      </ul>
+
+      <h3>❌ Nachteile</h3>
+      <ul>
+        <li><strong>Halluzinationen:</strong> Kann überzeugend klingende, aber faktisch falsche Informationen liefern</li>
+        <li><strong>Keine Quellenangaben:</strong> In der kostenlosen Version fehlen Quellenverweise</li>
+        <li><strong>Datenschutzbedenken:</strong> Daten können für das Training verwendet werden (opt-out möglich)</li>
+        <li><strong>Aktualität:</strong> Wissen kann veraltet sein, außer bei der kostenpflichtigen Version mit Websuche</li>
+      </ul>
+
+      <blockquote>
+        <p><strong>💡 Tipp für Lehrkräfte:</strong> ChatGPT eignet sich hervorragend zur schnellen Erstellung von Arbeitsblättern und differenzierten Übungsmaterialien. Ergebnisse sollten jedoch immer auf Richtigkeit geprüft werden.</p>
+      </blockquote>
+
+      <hr />
+
+      <h2>🧠 Claude — Der Nachdenker</h2>
+      <p>Claude von Anthropic zeichnet sich durch einen besonders nuancierten und sicherheitsbewussten Ansatz aus. Das Tool legt großen Wert auf ethische Überlegungen und ist für akademische Zwecke besonders wertvoll.</p>
+
+      <h3>✅ Vorteile</h3>
+      <ul>
+        <li><strong>Analytische Tiefe:</strong> Durchdenkt komplexe Argumentationen und liefert differenzierte Antworten</li>
+        <li><strong>Sicherheitsfokus:</strong> Besonders vorsichtig bei sensiblen oder kontroversen Themen</li>
+        <li><strong>Langes Kontextfenster:</strong> Kann sehr umfangreiche Dokumente auf einmal verarbeiten</li>
+        <li><strong>Datenschutz:</strong> Nutzt standardmäßig keine Gespräche für das Training</li>
+      </ul>
+
+      <h3>❌ Nachteile</h3>
+      <ul>
+        <li><strong>Übervorsichtigkeit:</strong> Verweigert manchmal harmlose Anfragen aus Sicherheitsgründen</li>
+        <li><strong>Geringere Bekanntheit:</strong> Weniger Tutorials und Community-Ressourcen verfügbar</li>
+        <li><strong>Keine Bildgenerierung:</strong> Kann im Gegensatz zu ChatGPT keine Bilder erstellen</li>
+      </ul>
+
+      <blockquote>
+        <p><strong>💡 Tipp für Studierende:</strong> Claude eignet sich besonders gut für die kritische Analyse von Texten und die Überprüfung akademischer Argumentationen – ideal für die Vorbereitung von Hausarbeiten.</p>
+      </blockquote>
+
+      <hr />
+
+      <h2>🔍 Gemini — Der Rechercheur</h2>
+      <p>Gemini von Google kombiniert KI-Fähigkeiten mit der Google-Suchinfrastruktur und bietet damit einen einzigartigen Zugang zu aktuellen Informationen.</p>
+
+      <h3>✅ Vorteile</h3>
+      <ul>
+        <li><strong>Aktuelle Informationen:</strong> Direkter Zugriff auf aktuelle Webinhalte über Google-Suche</li>
+        <li><strong>Quellenangaben:</strong> Liefert automatisch Links zu den verwendeten Quellen</li>
+        <li><strong>Integration:</strong> Nahtlose Verbindung mit Google Workspace (Docs, Sheets, Slides)</li>
+        <li><strong>Multimodal:</strong> Kann Bilder, Videos und Text verarbeiten</li>
+      </ul>
+
+      <h3>❌ Nachteile</h3>
+      <ul>
+        <li><strong>Datenschutz:</strong> Enge Verknüpfung mit dem Google-Konto und Google-Diensten</li>
+        <li><strong>Texterstellung:</strong> Bei längeren kreativen Texten nicht so stark wie ChatGPT oder Claude</li>
+        <li><strong>Verfügbarkeit:</strong> Einige Funktionen sind regional oder durch Google-Konto eingeschränkt</li>
+      </ul>
+
+      <blockquote>
+        <p><strong>💡 Tipp für Schüler:</strong> Gemini ist ideal für Rechercheaufgaben, da es automatisch Quellen angibt – perfekt für Referate und Präsentationen.</p>
+      </blockquote>
+
+      <hr />
+
+      <h2>💼 Copilot — Der Assistent</h2>
+      <p>Microsoft Copilot (ehemals Bing Chat) ist tief in das Microsoft-Ökosystem integriert und bietet für Schulen und Universitäten mit Microsoft 365 besondere Vorteile.</p>
+
+      <h3>✅ Vorteile</h3>
+      <ul>
+        <li><strong>Office-Integration:</strong> Direkt in Word, PowerPoint, Excel und Teams verfügbar</li>
+        <li><strong>Quellenangaben:</strong> Zeigt automatisch Quellen und Links an</li>
+        <li><strong>Bildungsprogramme:</strong> Spezielle EDU-Lizenzen für Schulen und Hochschulen</li>
+        <li><strong>Websuche:</strong> Zugriff auf aktuelle Informationen über Bing</li>
+      </ul>
+
+      <h3>❌ Nachteile</h3>
+      <ul>
+        <li><strong>Microsoft-Bindung:</strong> Volle Funktionalität nur im Microsoft-Ökosystem</li>
+        <li><strong>Kreativität:</strong> Bei freien Textaufgaben weniger überzeugend als ChatGPT</li>
+        <li><strong>Gespräche:</strong> Konversationen können in der kostenlosen Version begrenzt sein</li>
+      </ul>
+
+      <blockquote>
+        <p><strong>💡 Tipp für Institutionen:</strong> Für Schulen, die bereits Microsoft 365 nutzen, bietet Copilot den einfachsten Einstieg in KI-gestütztes Arbeiten mit bekannten Tools.</p>
+      </blockquote>
+
+      <hr />
+
+      <h2>Empfehlung nach Zielgruppe</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Zielgruppe</th>
+            <th>Empfohlenes Tool</th>
+            <th>Begründung</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Schüler</strong></td>
+            <td>Gemini / ChatGPT</td>
+            <td>Einfacher Einstieg, Quellenangaben, kostenlos nutzbar</td>
+          </tr>
+          <tr>
+            <td><strong>Studenten</strong></td>
+            <td>Claude / ChatGPT</td>
+            <td>Analytische Tiefe, akademische Qualität, lange Texte</td>
+          </tr>
+          <tr>
+            <td><strong>Lehrer</strong></td>
+            <td>ChatGPT / Copilot</td>
+            <td>Materialgenerierung, Office-Integration, vielseitig einsetzbar</td>
+          </tr>
+          <tr>
+            <td><strong>Professoren</strong></td>
+            <td>Claude / Gemini</td>
+            <td>Wissenschaftliche Analyse, Quellenarbeit, Datenschutz</td>
+          </tr>
+        </tbody>
+      </table>
+
       <h2>Fazit</h2>
-      <p>Die Wahl des richtigen KI-Tools hängt von den spezifischen Anforderungen ab. Entscheidend ist, dass Nutzer diese Tools verantwortungsvoll einsetzen und verstehen, wie sie funktionieren.</p>
+      <p>Es gibt nicht <em>das eine</em> perfekte KI-Tool für den Bildungsbereich. Die Wahl hängt von den spezifischen Anforderungen, dem Einsatzgebiet und den vorhandenen Infrastrukturen ab. Am wichtigsten ist, dass alle Beteiligten – Schüler, Studenten, Lehrer und Professoren – diese Tools <strong>verantwortungsvoll</strong> einsetzen, ihre Grenzen verstehen und die Ergebnisse stets kritisch hinterfragen.</p>
+      <p>Unser Tipp: Probieren Sie mehrere Tools aus und finden Sie heraus, welches am besten zu Ihrem Arbeitsablauf passt. Kombinieren Sie die Stärken verschiedener Assistenten für optimale Ergebnisse.</p>
     `,
     sources: [
       "OpenAI ChatGPT Documentation (2025)",
