@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Award, Lightbulb, Clock } from "lucide-react";
 import { articles } from "@/data/articles";
 
-const professorArticles = articles;
+const professorArticles = articles.filter((a) => a.audiences.includes("Professoren"));
 
 const considerations = [
   {
@@ -26,6 +26,9 @@ const considerations = [
   },
 ];
 
+const overviewText =
+  "Für Professorinnen und Professoren stellt KI weniger eine technische als eine hochschuldidaktische und institutionelle Herausforderung dar. Der aktuelle Stand ist geprägt von Experimenten, Unsicherheit und sehr unterschiedlichen Regelungen zwischen Fachbereichen. KI beeinflusst insbesondere Prüfungsformen, Leistungsnachweise und die Betreuung von Studierenden. Zentrale Aufgabe ist es, Lernziele klarer zu definieren und Prüfungen so zu gestalten, dass Verständnis, Transfer und Reflexion im Vordergrund stehen. KI kann in Forschung, Lehre und Administration entlasten, erfordert aber klare Rahmenbedingungen. Wichtig ist eine offene Kommunikation gegenüber Studierenden über erlaubte und unerlaubte Nutzung. Professoren nehmen eine Schlüsselrolle bei der Etablierung einer verantwortungsvollen KI-Kultur ein. Dazu gehört auch, ethische, gesellschaftliche und rechtliche Aspekte in die Lehre einzubeziehen. KI bietet Chancen für individualisiertes Feedback und neue Lehrformate, etwa projekt- oder forschungsorientiertes Lernen. Gleichzeitig bleibt die persönliche akademische Betreuung unverzichtbar. Hochschulen stehen am Beginn eines tiefgreifenden Wandels. Professorinnen und Professoren gestalten aktiv mit, wie KI verantwortungsvoll integriert wird.";
+
 const ProfessorenPage = () => {
   return (
     <Layout>
@@ -39,6 +42,15 @@ const ProfessorenPage = () => {
         <div className="container mx-auto px-4">
           <div className="grid gap-8 lg:grid-cols-3">
             <div className="lg:col-span-2">
+              <Card className="mb-6">
+                <CardHeader>
+                  <CardTitle className="font-serif">Für Professorinnen und Professoren</CardTitle>
+                  <CardDescription className="text-base leading-relaxed text-muted-foreground">
+                    {overviewText}
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+
               <h2 className="mb-6 font-serif text-2xl font-bold text-foreground">
                 Artikel für Lehrende an Hochschulen
               </h2>

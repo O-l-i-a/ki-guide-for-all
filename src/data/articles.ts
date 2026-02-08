@@ -12,7 +12,7 @@ export interface ArticleData {
   relatedArticleIds: number[];
 }
 
-export const articles: ArticleData[] = [
+const baseArticles: ArticleData[] = [
   {
     id: 1,
     title: "Meinungsbild unter Schülern zur Nutzung von KI im Klassenraum",
@@ -579,6 +579,47 @@ export const articles: ArticleData[] = [
     relatedArticleIds: [20, 31],
   },
 ];
+
+const strictAudiencesById: Record<number, string[]> = {
+  1: ["Schüler", "Lehrer"],
+  2: ["Lehrer", "Studenten", "Professoren", "Allgemein"],
+  3: ["Studenten", "Professoren", "Allgemein"],
+  4: ["Schüler", "Lehrer", "Studenten", "Professoren", "Allgemein"],
+  5: ["Schüler", "Lehrer", "Allgemein"],
+  6: ["Schüler", "Lehrer", "Allgemein"],
+  7: ["Lehrer", "Allgemein"],
+  8: ["Schüler", "Lehrer", "Allgemein"],
+  9: ["Lehrer", "Professoren", "Allgemein"],
+  10: ["Lehrer", "Allgemein"],
+  11: ["Lehrer", "Professoren", "Allgemein"],
+  12: ["Lehrer", "Allgemein"],
+  13: ["Lehrer"],
+  14: ["Lehrer", "Allgemein"],
+  15: ["Lehrer", "Allgemein"],
+  16: ["Schüler", "Lehrer"],
+  17: ["Schüler", "Lehrer"],
+  18: ["Lehrer", "Allgemein"],
+  19: ["Schüler", "Lehrer"],
+  20: ["Lehrer"],
+  21: ["Schüler", "Lehrer"],
+  22: ["Lehrer"],
+  23: ["Schüler", "Lehrer"],
+  24: ["Schüler", "Lehrer"],
+  25: ["Schüler", "Lehrer"],
+  26: ["Schüler", "Studenten", "Allgemein"],
+  27: ["Studenten", "Professoren", "Allgemein"],
+  28: ["Lehrer", "Allgemein"],
+  29: ["Schüler", "Allgemein"],
+  30: ["Studenten", "Professoren", "Allgemein"],
+  31: ["Lehrer", "Allgemein"],
+  32: ["Allgemein"],
+  33: ["Lehrer", "Allgemein"],
+};
+
+export const articles: ArticleData[] = baseArticles.map((article) => ({
+  ...article,
+  audiences: strictAudiencesById[article.id] ?? ["Allgemein"],
+}));
 
 export const getArticleById = (id: number): ArticleData | undefined => {
   return articles.find((article) => article.id === id);

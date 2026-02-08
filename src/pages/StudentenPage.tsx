@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { GraduationCap, BookOpen, Clock } from "lucide-react";
 import { articles } from "@/data/articles";
 
-const universityStudentArticles = articles;
+const universityStudentArticles = articles.filter((a) => a.audiences.includes("Studenten"));
 
 const resources = [
   {
@@ -22,6 +22,9 @@ const resources = [
   },
 ];
 
+const overviewText =
+  "Für Studierende ist KI bereits ein weit verbreitetes Werkzeug zum Recherchieren, Schreiben, Strukturieren und Lernen. Der aktuelle Stand zeigt, dass viele Hochschulen noch dabei sind, verbindliche Regeln und Prüfungsformate zu entwickeln. KI kann das Studium effizienter machen, ersetzt jedoch weder fachliches Verständnis noch wissenschaftliches Denken. Besonders wichtig ist die Fähigkeit, KI-Ergebnisse kritisch zu bewerten und transparent mit ihrer Nutzung umzugehen. Studierende müssen wissen, wann KI erlaubt ist, wie sie korrekt eingesetzt wird und wo ihre Grenzen liegen. KI kann beim Einstieg in komplexe Themen helfen, darf aber keine fertigen wissenschaftlichen Leistungen liefern. Akademische Integrität bleibt zentral, auch im KI-Zeitalter. Gleichzeitig entstehen neue Kompetenzen, etwa im Prompting, im Vergleich von Quellen oder in der Reflexion maschineller Texte. Hochschulen erkennen zunehmend, dass Verbote allein nicht zielführend sind. Stattdessen rückt die Frage in den Fokus, wie Lernen und Prüfen neu gestaltet werden können. Studierende, die KI reflektiert nutzen, verschaffen sich einen Kompetenzvorsprung. KI wird langfristig Teil akademischer Arbeitskultur sein.";
+
 const StudentenPage = () => {
   return (
     <Layout>
@@ -35,6 +38,15 @@ const StudentenPage = () => {
         <div className="container mx-auto px-4">
           <div className="grid gap-8 lg:grid-cols-3">
             <div className="lg:col-span-2">
+              <Card className="mb-6">
+                <CardHeader>
+                  <CardTitle className="font-serif">Für Studierende</CardTitle>
+                  <CardDescription className="text-base leading-relaxed text-muted-foreground">
+                    {overviewText}
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+
               <h2 className="mb-6 font-serif text-2xl font-bold text-foreground">
                 Artikel für Studierende
               </h2>

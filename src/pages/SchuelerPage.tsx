@@ -21,6 +21,9 @@ const donts = [
   "Persönliche Daten in KI-Tools eingeben",
 ];
 
+const overviewText =
+  "KI ist für viele Schülerinnen und Schüler bereits Teil des Alltags - als Chatbot, Suchhilfe oder Kreativwerkzeug. In der Schule geht es dabei nicht darum, KI einfach Antworten liefern zu lassen, sondern sie als Lernwerkzeug bewusst zu nutzen. Aktuell lernen viele Jugendliche noch kaum, wie KI funktioniert, welche Fehler sie macht und wie sie Ergebnisse kritisch prüfen können. Wichtig ist, KI als Unterstützung beim Verstehen, Üben und Strukturieren zu verwenden, nicht als Ersatz für eigenes Denken. Schülerinnen und Schüler müssen lernen, Verantwortung für ihre Arbeit zu übernehmen, auch wenn KI beteiligt ist. Dazu gehört, Ergebnisse zu hinterfragen, Quellen zu prüfen und eigene Ideen einzubringen. Gleichzeitig bietet KI neue Chancen für individuelles Lernen, besonders bei unterschiedlichen Lerntempi oder sprachlichen Hürden. Schulen beginnen zunehmend, KI offen zu thematisieren statt zu verbieten. Kompetenzen wie kritisches Denken, Kreativität und Problemlösen werden dadurch wichtiger als reines Faktenwissen. KI kann helfen, diese Fähigkeiten zu trainieren - wenn sie richtig eingesetzt wird. Der sichere und faire Umgang mit KI ist eine neue Schlüsselkompetenz. Langfristig wird KI ein fester Bestandteil schulischer Lernprozesse sein.";
+
 const SchuelerPage = () => {
   return (
     <Layout>
@@ -34,6 +37,15 @@ const SchuelerPage = () => {
         <div className="container mx-auto px-4">
           <div className="grid gap-8 lg:grid-cols-3">
             <div className="lg:col-span-2">
+              <Card className="mb-6">
+                <CardHeader>
+                  <CardTitle className="font-serif">Für Schülerinnen und Schüler</CardTitle>
+                  <CardDescription className="text-base leading-relaxed text-muted-foreground">
+                    {overviewText}
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+
               <h2 className="mb-6 font-serif text-2xl font-bold text-foreground">
                 Artikel für Schüler
               </h2>

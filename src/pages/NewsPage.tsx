@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Clock, Newspaper } from "lucide-react";
 import { articles, type ArticleData } from "@/data/articles";
 
-const categories = ["Alle", "Schüler", "Lehrer", "Allgemein"];
+const categories = ["Alle", "Schüler", "Lehrer", "Studenten", "Professoren", "Allgemein"];
 
 const NewsPage = () => {
   const renderArticleCard = (article: ArticleData) => (

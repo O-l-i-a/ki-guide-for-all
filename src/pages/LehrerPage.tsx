@@ -15,6 +15,9 @@ const tips = [
   "Regelmäßige Fortbildungen zum Thema KI besuchen",
 ];
 
+const overviewText =
+  "Künstliche Intelligenz verändert den Unterricht nicht grundlegend, aber sie verändert, wie Lehrkräfte unterrichten, planen und bewerten. Aktuell wird KI vor allem zur Unterrichtsvorbereitung, zur Differenzierung von Lernmaterialien und zur Unterstützung bei Feedback und Diagnose eingesetzt. Zentrale Aufgabe von Lehrkräften bleibt dabei die pädagogische Steuerung: KI liefert Vorschläge, trifft aber keine didaktischen Entscheidungen. Besonders wichtig ist ein bewusster Umgang mit Transparenz, Datenschutz und der Frage, wann KI sinnvoll ist und wann nicht. Lehrkräfte stehen vor der Herausforderung, neue Prüfungsformate zu entwickeln, die eigenständiges Denken und Reflexion fördern. Gleichzeitig wächst die Rolle der Lehrperson als Lernbegleiter, Moderator und Wertevermittler. KI kann helfen, Lernprozesse zu individualisieren, darf aber keine soziale Beziehung ersetzen. Der aktuelle Stand zeigt große Unterschiede zwischen Schulen, abhängig von Ausstattung, Fortbildung und Offenheit. Entscheidend ist weniger technisches Detailwissen als ein grundlegendes Verständnis von Funktionsweise und Grenzen. Lehrkräfte müssen KI nicht perfekt beherrschen, aber reflektiert einsetzen und mit Lernenden offen thematisieren. Langfristig wird KI Teil professioneller Unterrichtspraxis sein, ähnlich wie digitale Medien heute.";
+
 const LehrerPage = () => {
   return (
     <Layout>
@@ -28,6 +31,15 @@ const LehrerPage = () => {
         <div className="container mx-auto px-4">
           <div className="grid gap-8 lg:grid-cols-3">
             <div className="lg:col-span-2">
+              <Card className="mb-6">
+                <CardHeader>
+                  <CardTitle className="font-serif">Für Lehrerinnen und Lehrer</CardTitle>
+                  <CardDescription className="text-base leading-relaxed text-muted-foreground">
+                    {overviewText}
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+
               <h2 className="mb-6 font-serif text-2xl font-bold text-foreground">
                 Aktuelle Artikel für Lehrer
               </h2>
