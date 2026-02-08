@@ -15,33 +15,137 @@ export const articles: ArticleData[] = [
   {
     id: 1,
     title: "ChatGPT, Claude & Co: Ein Vergleich für den Bildungsbereich",
-    description: "Welche KI-Tools eignen sich am besten für Schule und Universität? Wir vergleichen Stärken und Schwächen.",
+    description: "Übersicht der wichtigsten KI-Tools für Lehre und Lernen - ihre Vorteile, Nachteile und praktischen Einsatzszenarien.",
     category: "Allgemein",
-    readTime: "8 Min.",
-    date: "10. Jan 2026",
-    author: "Dr. Sarah Mueller",
+    readTime: "10 Min.",
+    date: "8. Feb 2026",
+    author: "Melissa",
     content: `
-      <h2>Einführung</h2>
-      <p>Künstliche Intelligenz hat die Bildungslandschaft grundlegend verändert. Mit einer Fülle von KI-Tools wie ChatGPT, Claude und anderen Plattformen können Lehrer, Schüler und Studenten ihre Arbeitsabläufe optimieren. Doch welche Tools sind wirklich für den Bildungsbereich geeignet?</p>
+      <h2>KI-Tools für Lehre & Lernen - Überblick</h2>
+      <p>Die Landschaft der KI-Tools für Bildung wächst ständig. Verschiedene Plattformen bieten unterschiedliche Stärken und eignen sich für verschiedene Aufgaben. Dieser Überblick hilft Ihnen, das richtige Tool für Ihre Anforderungen zu finden.</p>
       
-      <h3>ChatGPT - Der Alleskönner</h3>
-      <p>ChatGPT von OpenAI ist wahrscheinlich das bekannteste KI-Tool. Mit seiner umfassenden Trainingsdatenbank kann es eine Vielzahl von Aufgaben bewältigen. Von der Erklärung komplexer Konzepte bis zur Unterstützung bei der Hausaufgabenvorbereitung - ChatGPT bietet vielfältige Funktionen für Studenten und Schüler.</p>
-      <p>Die Stärken von ChatGPT liegen in seiner Flexibilität und seiner Fähigkeit, längere Texte zu generieren. Allerdings sollten Nutzer kritisch hinterfragen, da das System gelegentlich fehlerhafte Informationen liefern kann.</p>
+      <h2>Vergleich der wichtigsten KI-Tools</h2>
       
-      <h3>Claude - Der Nachdenker</h3>
-      <p>Claude von Anthropic zeichnet sich durch einen nuancierten Ansatz aus. Das Tool legt mehr Wert auf Sicherheit und ethische Überlegungen. Für akademische Zwecke kann Claude besonders wertvoll sein, da es komplexe Argumentationen durchdenkt und differenzierte Antworten gibt.</p>
+      <table style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px;">
+        <thead>
+          <tr style="background-color: #f0f0f0; border-bottom: 2px solid #333;">
+            <th style="padding: 12px; text-align: left; font-weight: bold;">Tool / Kategorie</th>
+            <th style="padding: 12px; text-align: left; font-weight: bold;">Geeignet für</th>
+            <th style="padding: 12px; text-align: left; font-weight: bold;">Vorteile</th>
+            <th style="padding: 12px; text-align: left; font-weight: bold;">Nachteile / Hinweise</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid #ddd;">
+            <td style="padding: 12px; font-weight: bold;">ChatGPT</td>
+            <td style="padding: 12px;">Lernzusammenfassungen, Erklärungen, Textentwürfe, Strukturierung</td>
+            <td style="padding: 12px;">Sehr vielseitig, gute Erklärungen auf verschiedenen Niveaus</td>
+            <td style="padding: 12px;">Kann fehlerhafte Inhalte liefern - Fakten überprüfen, keine sensiblen Daten</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #ddd;">
+            <td style="padding: 12px; font-weight: bold;">Gemini (Google)</td>
+            <td style="padding: 12px;">Recherche, Überblick, Zusammenfassungen, Präsentationen</td>
+            <td style="padding: 12px;">Starker Web-Bezug, Integration in Google-Dienste</td>
+            <td style="padding: 12px;">Quellen nicht immer verlässlich, Google-Konto notwendig</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #ddd;">
+            <td style="padding: 12px; font-weight: bold;">Microsoft Copilot</td>
+            <td style="padding: 12px;">Recherche, Textarbeit, Office-Aufgaben</td>
+            <td style="padding: 12px;">Integration in Word, PowerPoint, Websuche</td>
+            <td style="padding: 12px;">Teilweise oberflächliche Antworten</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #ddd;">
+            <td style="padding: 12px; font-weight: bold;">Claude</td>
+            <td style="padding: 12px;">Längere Texte, strukturierte Argumentation</td>
+            <td style="padding: 12px;">Sehr gut bei umfangreichen Texten, ethischer Fokus</td>
+            <td style="padding: 12px;">Weniger Tool-Integration</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #ddd;">
+            <td style="padding: 12px; font-weight: bold;">DeepL / DeepL Write</td>
+            <td style="padding: 12px;">Übersetzen, sprachliche Überarbeitung</td>
+            <td style="padding: 12px;">Sehr hohe Sprachqualität, präzise Übersetzungen</td>
+            <td style="padding: 12px;">Keine Wissens- oder Recherche-KI</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px; font-weight: bold;">Bild-KI (z.B. Canva)</td>
+            <td style="padding: 12px;">Visualisierung, Präsentationen, Grafiken</td>
+            <td style="padding: 12px;">Anschauliches Lernen, schnelle professionelle Grafiken</td>
+            <td style="padding: 12px;">Urheberrecht beachten, Quellenangaben machen</td>
+          </tr>
+        </tbody>
+      </table>
       
-      <h3>Weitere Tools</h3>
-      <p>Neben diesen Hauptakteuren gibt es weitere spezialisierte KI-Tools für verschiedene Bildungsbereiche. Gemini, Copilot und andere bieten jeweils eigene Vorteile.</p>
+      <h2>Einsatzszenarien</h2>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin: 20px 0;">
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px;">
+          <h3 style="margin-top: 0; font-size: 16px;">📚 Lernzusammenfassungen</h3>
+          <p style="margin: 0; font-size: 14px;">Komplexe Inhalte zusammenfassen und Prüfungen vorbereiten</p>
+        </div>
+        <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 20px; border-radius: 8px;">
+          <h3 style="margin-top: 0; font-size: 16px;">🔍 Recherche</h3>
+          <p style="margin: 0; font-size: 14px;">Überblick zu Themen gewinnen und aktuelle Informationen finden</p>
+        </div>
+        <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 20px; border-radius: 8px;">
+          <h3 style="margin-top: 0; font-size: 16px;">✍️ Schreiben</h3>
+          <p style="margin: 0; font-size: 14px;">Texte verfassen und sprachlich verbessern</p>
+        </div>
+        <div style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white; padding: 20px; border-radius: 8px;">
+          <h3 style="margin-top: 0; font-size: 16px;">🎨 Präsentationen</h3>
+          <p style="margin: 0; font-size: 14px;">Visualisierungen und ansprechende Grafiken erstellen</p>
+        </div>
+        <div style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); color: white; padding: 20px; border-radius: 8px;">
+          <h3 style="margin-top: 0; font-size: 16px;">📋 Unterrichtsvorbereitung</h3>
+          <p style="margin: 0; font-size: 14px;">Lektionspläne und Materialien schnell erstellen</p>
+        </div>
+        <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; padding: 20px; border-radius: 8px;">
+          <h3 style="margin-top: 0; font-size: 16px;">🎯 Unterschiedliche Lernniveaus</h3>
+          <p style="margin: 0; font-size: 14px;">Inhalte auf verschiedene Schüler anpassen</p>
+        </div>
+      </div>
+      
+      <h2>Welches Tool wofür?</h2>
+      
+      <div style="background: #f9f9f9; border-left: 4px solid #667eea; padding: 16px; margin: 16px 0; border-radius: 4px;">
+        <h4 style="margin-top: 0; color: #667eea;">💡 ChatGPT</h4>
+        <p style="margin: 0;">Beste Wahl für Erklärungen, Strukturierung von Inhalten und flexibles Lernen</p>
+      </div>
+      
+      <div style="background: #f9f9f9; border-left: 4px solid #f5576c; padding: 16px; margin: 16px 0; border-radius: 4px;">
+        <h4 style="margin-top: 0; color: #f5576c;">🔍 Gemini</h4>
+        <p style="margin: 0;">Ideal für Recherche und aktuelle Informationen mit Google-Integration</p>
+      </div>
+      
+      <div style="background: #f9f9f9; border-left: 4px solid #00f2fe; padding: 16px; margin: 16px 0; border-radius: 4px;">
+        <h4 style="margin-top: 0; color: #00f2fe;">📊 Copilot</h4>
+        <p style="margin: 0;">Perfekt für Microsoft Office Benutzer und integrierte Arbeitsabläufe</p>
+      </div>
+      
+      <div style="background: #f9f9f9; border-left: 4px solid #764ba2; padding: 16px; margin: 16px 0; border-radius: 4px;">
+        <h4 style="margin-top: 0; color: #764ba2;">📖 Claude</h4>
+        <p style="margin: 0;">Spezialist für längere, strukturierte Texte und komplexe Argumentation</p>
+      </div>
+      
+      <div style="background: #f9f9f9; border-left: 4px solid #fee140; padding: 16px; margin: 16px 0; border-radius: 4px;">
+        <h4 style="margin-top: 0; color: #fee140;">🌐 DeepL</h4>
+        <p style="margin: 0;">Die beste Lösung für präzise Übersetzungen und sprachliche Korrektionen</p>
+      </div>
+      
+      <h2>Vorteile im Bildungsalltag</h2>
+      
+      <div style="background: #e8f4f8; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        <ul style="margin: 0; padding-left: 20px;">
+          <li style="margin-bottom: 12px;"><strong>Unterstützung beim Lernen:</strong> KI hilft, komplexe Inhalte zu verstehen und Konzepte in verschiedenen Formen zu erklären</li>
+          <li style="margin-bottom: 12px;"><strong>Zeitersparnis:</strong> Automatisierung von Routine-Aufgaben bei der Vorbereitung und Strukturierung</li>
+          <li style="margin-bottom: 12px;"><strong>Selbstständiges Lernen:</strong> Schüler erhalten sofortige Feedback und können in ihrem eigenen Tempo lernen</li>
+          <li><strong>Differenzierung:</strong> KI-Tools passen Inhalte an verschiedene Leistungsniveaus an</li>
+        </ul>
+      </div>
       
       <h2>Fazit</h2>
-      <p>Die Wahl des richtigen KI-Tools hängt von den spezifischen Anforderungen ab. Entscheidend ist, dass Nutzer diese Tools verantwortungsvoll einsetzen und verstehen, wie sie funktionieren.</p>
+      <p>Es gibt nicht das eine "beste" KI-Tool – es kommt auf Ihre spezifischen Anforderungen an. Die in diesem Artikel genannten Tools bieten jeweils unterschiedliche Stärken und Spezialisierungen. Der Schlüssel liegt darin, diese Tools bewusst und verantwortungsvoll einzusetzen, ihre Ergebnisse kritisch zu hinterfragen und immer die ethischen und datenschutzrechtlichen Grenzen zu beachten.</p>
     `,
     sources: [
-      "OpenAI ChatGPT Documentation (2025)",
-      "Anthropic Claude Safety Research (2025)",
-      "UNESCO KI und Bildung Bericht (2024)",
-      "Journal of Educational Technology & Society (2025)",
     ],
     relatedArticleIds: [2, 4, 5],
   },
