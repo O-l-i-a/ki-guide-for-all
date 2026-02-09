@@ -410,14 +410,12 @@ const RichtlinienPage = () => {
           <div className="mt-16 border-t pt-8">
             <div className="mx-auto max-w-3xl rounded-lg bg-muted/30 p-6">
               <p className="mb-3 text-sm text-muted-foreground">
-                <span className="font-semibold text-foreground">Erstellt von Melissa Mewes, am 06.02.2026</span>
+                <span className="font-semibold text-foreground">Erstellt von Melissa, am 06.02.2026</span>
               </p>
               <p className="mb-2 text-sm text-muted-foreground">
-                Bei der Erstellung dieser Arbeit wurde KI unterstützend genutzt (zur Ideensammlung und sprachlichen Überarbeitung).
+                Bei der Erstellung dieser Arbeit wurde KI unterstützend genutzt.
               </p>
-              <p className="text-sm text-muted-foreground">
-                Die inhaltliche Verantwortung liegt vollständig bei mir.
-              </p>
+              
             </div>
           </div>
 
